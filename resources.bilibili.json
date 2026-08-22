@@ -1,0 +1,130 @@
+{
+  "items": [
+    {
+      "name_zh": "人工智能导论（全集）",
+      "name_en": "Introduction to Artificial Intelligence (Complete Course)",
+      "creator": "魏忠钰 / 复旦大学数据智能与社会计算实验室（UP主：复旦DISC魏忠钰）",
+      "language": "中文（普通话）",
+      "format": "74集完整课程合集（本科录播/MOOC）",
+      "level": "本科入门—中级",
+      "topics": "AI基础、搜索与启发式搜索、博弈、约束满足、马尔可夫决策过程、经典人工智能",
+      "url": "https://www.bilibili.com/video/BV1M24y1x7mM/",
+      "authority": "主讲教师/实验室身份账号发布；视频简介明确称课程由复旦大学数据智能与社会计算实验室推出、主讲人为复旦大学魏忠钰副教授，并链接学堂在线课程；不是复旦大学校级官方账号，但属于课程团队一手来源。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "吴恩达《给所有人的AI课》（中英字幕）",
+      "name_en": "AI for Everyone",
+      "creator": "Andrew Ng（吴恩达）/ DeepLearning.AI；B站UP主：GPT中英字幕课程资源",
+      "language": "英语原声；中英双语字幕",
+      "format": "35集课程合集（非官方双语字幕转载）",
+      "level": "零基础—入门",
+      "topics": "AI基础、机器学习与深度学习通识、数据、AI项目流程、AI战略、伦理与社会影响",
+      "url": "https://www.bilibili.com/video/BV1yC4y127uj/",
+      "authority": "课程原作者吴恩达及DeepLearning.AI具有公认权威性，合集简介链接Coursera原课且35个分集与课程结构相符；但B站UP主不是吴恩达、DeepLearning.AI或其已核实官方账号，页面未见授权声明，故明确标为非官方转载。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "第一讲：一堂课搞懂生成式人工智能的技术突破与未来发展（李宏毅2025《机器学习》）",
+      "name_en": "Lecture 1: Understanding the Breakthroughs and Future of Generative AI (Hung-yi Lee 2025 Machine Learning)",
+      "creator": "李宏毅（授课）；啥都会一点的研究生（获授权转载）",
+      "language": "中文（普通话；繁体中文课件）",
+      "format": "27集课程合集中的单讲（P1；大学课程讲座）",
+      "level": "入门—中级",
+      "topics": "机器学习、生成式AI、LLM/大语言模型、技术演进、现代AI基础",
+      "url": "https://www.bilibili.com/video/BV1aiADewEBC/?p=1",
+      "authority": "非官方但有明确授权声明：合集简介写明“已联系李宏毅老师得到转载许可”，并链接李宏毅在台湾大学电机工程学系网站上的2025课程主页；UP主不是李宏毅或台大官方账号。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "百度零基础深度学习集训营",
+      "name_en": "Baidu Deep Learning Bootcamp for Absolute Beginners",
+      "creator": "飞桨PaddlePaddle（百度飞桨官方账号）",
+      "language": "中文（普通话）",
+      "format": "21集系统课程合集（讲座与实践）",
+      "level": "零基础—中级",
+      "topics": "深度学习、神经网络、NumPy、计算机视觉、自然语言处理、推荐系统、PaddlePaddle",
+      "url": "https://www.bilibili.com/video/BV1zJ411579R/",
+      "authority": "由B站“飞桨PaddlePaddle”厂商官方账号发布；视频简介明确称其为“百度飞桨精心打造的官方课程”，包含系统化深度学习课程。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Softmax回归＋损失函数＋图片分类数据集【动手学深度学习v2】",
+      "name_en": "Softmax Regression, Loss Functions, and Image Classification Datasets (Dive into Deep Learning v2)",
+      "creator": "李沐（UP主：跟李沐学AI）",
+      "language": "中文（普通话；代码与术语含英文）",
+      "format": "6集章节合集（原理、从零实现、简洁实现、QA）",
+      "level": "入门—中级",
+      "topics": "机器学习、深度学习基础、Softmax回归、损失函数、图片分类、代码实现",
+      "url": "https://www.bilibili.com/video/BV1K64y1Q7wu/",
+      "authority": "李沐本人教学账号“跟李沐学AI”一手发布；简介链接《动手学深度学习v2》官方课程主页与在线教材，兼具知名教材、作者授课和可复现实作。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Transformer【动手学深度学习v2】",
+      "name_en": "Transformer (Dive into Deep Learning v2)",
+      "creator": "李沐（UP主：跟李沐学AI）",
+      "language": "中文（普通话；代码与术语含英文）",
+      "format": "4集章节合集（原理、代码、QA）",
+      "level": "中级",
+      "topics": "Transformer、注意力机制、多头注意力、编码器—解码器、深度学习代码实现",
+      "url": "https://www.bilibili.com/video/BV1Kq4y1H7FL/",
+      "authority": "李沐本人教学账号一手发布，属于《动手学深度学习v2》课程；简介同时链接课程主页和在线教材，视频包含Transformer原理、代码与答疑。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "GPT、GPT-2、GPT-3论文精读",
+      "name_en": "GPT, GPT-2, and GPT-3 Paper Walkthrough",
+      "creator": "李沐（UP主：跟李沐学AI）",
+      "language": "中文（普通话；讲解英文论文）",
+      "format": "单集论文精读视频",
+      "level": "中级—高级",
+      "topics": "LLM/大语言模型、GPT系列、自回归语言模型、预训练、少样本学习、规模化",
+      "url": "https://www.bilibili.com/video/BV1AF411b7xQ/",
+      "authority": "由李沐本人账号一手发布；视频简介链接其公开的mli/paper-reading论文精读仓库，以GPT系列原始论文为讲解对象，属于B站高知名度技术精读资源。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "InstructGPT论文精读",
+      "name_en": "InstructGPT Paper Walkthrough",
+      "creator": "李沐（UP主：跟李沐学AI）",
+      "language": "中文（普通话；讲解英文论文）",
+      "format": "单集论文精读视频",
+      "level": "中级—高级",
+      "topics": "LLM/大语言模型、指令微调、RLHF、人类偏好、奖励模型、PPO、模型对齐",
+      "url": "https://www.bilibili.com/video/BV1hd4y187CR/",
+      "authority": "由李沐本人账号一手发布；简介链接其mli/paper-reading公开仓库，围绕OpenAI InstructGPT原始论文逐段讲解，是理解现代LLM对齐流程的权威二手教学。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "第二讲：一堂课搞懂AI Agent的原理（李宏毅2025《机器学习》）",
+      "name_en": "Lecture 2: Understanding How AI Agents Work (Hung-yi Lee 2025 Machine Learning)",
+      "creator": "李宏毅（授课）；啥都会一点的研究生（获授权转载）",
+      "language": "中文（普通话；繁体中文课件）",
+      "format": "27集课程合集中的单讲（P6；大学课程讲座）",
+      "level": "入门—中级",
+      "topics": "AI Agent/智能体、行为调整、工具使用、任务规划、生成式AI、LLM",
+      "url": "https://www.bilibili.com/video/BV1aiADewEBC/?p=6",
+      "authority": "李宏毅大学课程原讲；B站合集虽由第三方UP主上传，但简介明确写明已联系李宏毅取得转载许可，并链接台湾大学课程主页，因此标注为“非官方账号的已授权转载”。",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "使用AgentScope 2.0 Harness框架构建分布式、企业级智能体",
+      "name_en": "Building Distributed, Enterprise-Grade Agents with the AgentScope 2.0 Harness Framework",
+      "creator": "阿里云云原生",
+      "language": "中文（普通话；框架与代码术语含英文）",
+      "format": "单场技术分享/框架实战视频",
+      "level": "中级—高级",
+      "topics": "AI Agent/智能体、AgentScope 2.0、Harness、分布式智能体、企业级Agent架构、多智能体系统",
+      "url": "https://www.bilibili.com/video/BV1P9gf6qE3y/",
+      "authority": "由“阿里云云原生”厂商官方账号发布，主题直接对应阿里开源AgentScope 2.0框架，适合作为李宏毅概念课之后的官方工程化进阶资源。",
+      "accessed": "2026-08-22"
+    }
+  ],
+  "warnings": [
+    "可访问性于2026-08-22逐条核验：以上10个具体Bilibili URL直接HTTP GET均返回200并包含页面初始数据；对应Bilibili view API均返回code=0。平台后续可能因下架、地区、登录或风控策略改变可用性。",
+    "吴恩达《AI for Everyone》条目是课程内容的非官方B站转载：页面未发现授权声明，不应把UP主视为吴恩达或DeepLearning.AI官方。",
+    "李宏毅2025课程的两个条目由第三方UP主上传，但视频简介明确声明已取得李宏毅转载许可；它们是“已授权转载”，不是李宏毅或台湾大学B站官方发布。",
+    "复旦《人工智能导论》由主讲教师/实验室身份账号发布并链接学堂在线课程，但该账号不是复旦大学校级官方账号；权威性来自课程团队一手发布。"
+  ]
+}

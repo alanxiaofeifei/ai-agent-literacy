@@ -1,0 +1,24 @@
+# Local build and review artifacts
+artifacts/
+__pycache__/
+*.pyc
+*.log
+*_last.txt
+
+# Local research/planning inputs not published
+findings.md
+task_plan.md
+progress.md
+subscription_plans.md
+timeline_and_catalog.md
+interaction_spec.md
+content_quality_checklist.md
+
+# Codex task files
+codex_*_prompt.md
+codex_*_last.txt
+
+# Editor / OS files
+.DS_Store
+.vscode/
+.idea/

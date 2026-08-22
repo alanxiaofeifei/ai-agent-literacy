@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="面向零 IT 基础学习者，以及具备软件、系统、网络、云、运维、数据或安全基础但初学生成式 AI 与 AI Agent 的学习者。">
+  <meta name="color-scheme" content="dark light">
+  <link rel="alternate" hreflang="zh-CN" href="./">
+  <link rel="alternate" hreflang="en" href="en/">
+  <title>AI Agent 知识航图｜双轨互动课程</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink-0: #071019;
+      --ink-1: #0b1724;
+      --ink-2: #102236;
+      --ink-3: #18324a;
+      --paper: #eef3f5;
+      --muted: #a9bac4;
+      --faint: #758996;
+      --gold: #e7bd6a;
+      --gold-strong: #ffd98e;
+      --gold-wash: rgba(231, 189, 106, .11);
+      --cyan: #72b8c5;
+      --safe: #74b89b;
+      --danger: #e38b78;
+      --line: rgba(196, 219, 226, .14);
+      --line-strong: rgba(231, 189, 106, .36);
+      --panel: rgba(13, 29, 44, .78);
+      --panel-solid: #0e1d2c;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+      --radius: 18px;
+      --nav-width: 286px;
+      --max-content: 1160px;
+      --serif: "Iowan Old Style", "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif;
+      --sans: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --ink-0: #edf0ed;
+      --ink-1: #f6f3eb;
+      --ink-2: #e8ece8;
+      --ink-3: #d6dfdd;
+      --paper: #142735;
+      --muted: #526875;
+      --faint: #526875;
+      --gold: #724b0e;
+      --gold-strong: #724b0e;
+      --gold-wash: rgba(155, 109, 32, .09);
+      --cyan: #246c7c;
+      --safe: #256b50;
+      --danger: #9a4433;
+      --line: rgba(20, 39, 53, .15);
+      --line-strong: rgba(155, 109, 32, .34);
+      --panel: rgba(249, 247, 240, .86);
+      --panel-solid: #f7f4ec;
+      --shadow: 0 24px 70px rgba(30, 45, 51, .12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5.5rem;
+      background: var(--ink-0);
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(114, 184, 197, .09), transparent 25rem),
+        radial-gradient(circle at 18% 34%, rgba(231, 189, 106, .06), transparent 30rem),
+        var(--ink-0);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.7;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .65), transparent 78%);
+      content: "";
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    a { color: inherit; text-underline-offset: .22em; }
+    button, input, select, textarea { font: inherit; }
+    button, select { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .55; filter: saturate(.45); }
+    img, svg { display: block; max-width: 100%; }
+    p, h1, h2, h3 { overflow-wrap: anywhere; }
+
+    :focus-visible {
+      outline: 3px solid var(--gold-strong);
+      outline-offset: 4px;
+    }
+
+    ::selection { background: var(--gold); color: var(--ink-0); }
+
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 100;
+      padding: .7rem 1rem;
+      transform: translateY(-180%);
+      border-radius: 999px;
+      background: var(--gold-strong);
+      color: var(--ink-0);
+      font-weight: 800;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .mobile-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      padding: .7rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--ink-0) 86%, transparent);
+      backdrop-filter: blur(18px);
+    }
+
+    .mobile-brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: .35rem .7rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--gold-strong);
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-decoration: none;
+    }
+
+    .lang-switch:hover { background: var(--gold-wash); }
+
+    .compass-mark {
+      position: relative;
+      width: 30px;
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+    }
+
+    .compass-mark::before,
+    .compass-mark::after {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      background: var(--gold);
+      content: "";
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .compass-mark::before { width: 2px; height: 20px; }
+    .compass-mark::after { width: 20px; height: 2px; }
+
+    .mobile-progress { width: min(35vw, 140px); }
+    .mobile-section-nav { flex: 1 0 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .65rem; }
+    .mobile-section-nav span { color: var(--gold); font-family: var(--mono); font-size: .7rem; font-weight: 700; letter-spacing: .08em; }
+    .mobile-section-nav select { width: 100%; min-width: 0; min-height: 38px; padding: .4rem .65rem; }
+    .progress-meta { display: flex; justify-content: space-between; gap: .6rem; color: var(--muted); font-size: .72rem; }
+    .progress-track { height: 4px; margin-top: .35rem; overflow: hidden; border-radius: 99px; background: var(--ink-3); }
+    .progress-fill { width: 0%; height: 100%; border-radius: inherit; background: var(--gold); transition: width .35s ease; }
+
+    .course-nav {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 30;
+      display: none;
+      width: var(--nav-width);
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      background: color-mix(in srgb, var(--ink-1) 92%, transparent);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-inner { display: flex; min-height: 100%; flex-direction: column; padding: 1.6rem; }
+    .nav-kicker, .eyebrow, .section-index, .field-label, .status-label {
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .nav-title { margin: .25rem 0 1.4rem; font-family: var(--serif); font-size: 1.3rem; line-height: 1.25; }
+    .nav-progress { padding: .9rem 0 1.2rem; border-block: 1px solid var(--line); }
+    .nav-links { display: grid; gap: .08rem; margin: 1rem 0; }
+    .nav-links a {
+      display: grid;
+      grid-template-columns: 2.1rem 1fr;
+      gap: .3rem;
+      padding: .42rem .5rem;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.35;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover, .nav-links a[aria-current="location"] { background: var(--gold-wash); color: var(--paper); }
+    .nav-links span { color: var(--faint); font-family: var(--mono); }
+
+    .xp-panel {
+      margin-top: auto;
+      padding: 1rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--gold-wash), transparent 70%);
+    }
+
+    .xp-row { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+    .xp-number { color: var(--gold-strong); font-family: var(--serif); font-size: 2rem; line-height: 1; }
+    .level-name { color: var(--muted); font-size: .75rem; text-align: right; }
+    .badge-strip { display: flex; gap: .4rem; margin-top: .9rem; }
+    .badge-dot { display: grid; width: 25px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--faint); font-family: var(--mono); font-size: .62rem; }
+    .badge-dot[data-earned="true"] { border-color: var(--gold); background: var(--gold-wash); color: var(--gold-strong); }
+
+    .shell { min-width: 0; }
+    main { min-width: 0; }
+
+    .course-section {
+      position: relative;
+      max-width: var(--max-content);
+      min-width: 0;
+      margin-inline: auto;
+      padding: 5.5rem 1.1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head { display: grid; gap: .75rem; max-width: 780px; margin-bottom: 2rem; }
+    .section-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(2rem, 7vw, 4.6rem); font-weight: 600; letter-spacing: -.04em; line-height: .98; }
+    .section-head p { max-width: 66ch; margin: 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.12rem); }
+
+    .hero {
+      display: grid;
+      min-height: calc(100svh - 68px);
+      align-content: center;
+      padding-top: 4rem;
+    }
+
+    .hero::before {
+      position: absolute;
+      top: 10%;
+      right: 4%;
+      width: min(52vw, 520px);
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 42px transparent, inset 0 0 0 43px var(--line), inset 0 0 0 92px transparent, inset 0 0 0 93px var(--line);
+      content: "";
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    .hero-grid { position: relative; display: grid; gap: 3rem; }
+    .hero-copy { position: relative; z-index: 1; max-width: 880px; }
+    .hero h1 { max-width: 11ch; margin: .7rem 0 1.2rem; font-family: var(--serif); font-size: clamp(3.2rem, 13vw, 7.6rem); font-weight: 500; letter-spacing: -.065em; line-height: .88; }
+    .hero h1 em { color: var(--gold-strong); font-style: normal; }
+    .hero-lead { max-width: 56ch; color: var(--muted); font-size: clamp(1.05rem, 2.2vw, 1.3rem); }
+
+    .route-panel {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: .8rem;
+      width: 100%;
+      max-width: 800px;
+      padding: 1rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: .9rem;
+      width: 100%;
+      min-width: 0;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: transparent;
+      color: var(--paper);
+      text-align: left;
+    }
+
+    .route-card:hover, .route-card[aria-pressed="true"] { border-color: var(--gold); background: var(--gold-wash); }
+    .route-code { color: var(--gold); font-family: var(--mono); font-size: .72rem; }
+    .route-copy strong { display: block; font-family: var(--serif); font-size: 1.12rem; }
+    .route-copy small { display: block; margin-top: .15rem; color: var(--muted); }
+    .route-arrow { color: var(--gold); font-family: var(--mono); }
+
+    .hero-facts { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+    .fact { padding: .45rem .7rem; border-left: 2px solid var(--gold); background: var(--gold-wash); color: var(--muted); font-size: .78rem; }
+    .disclaimer { max-width: 76ch; margin-top: 1.3rem; color: var(--faint); font-size: .78rem; }
+
+    .toolbar, .control-row { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; }
+    .toolbar { margin-bottom: 1.2rem; }
+    .field { display: grid; min-width: min(100%, 180px); flex: 1 1 180px; gap: .4rem; }
+    .field-grow { flex-grow: 2; }
+    .input, select, textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: .7rem .85rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--ink-1);
+      color: var(--paper);
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+    .input::placeholder, textarea::placeholder { color: var(--faint); opacity: 1; }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .66rem 1rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: var(--gold-wash);
+      color: var(--gold-strong);
+      font-weight: 750;
+      letter-spacing: .01em;
+    }
+
+    .button:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash) 72%, var(--gold) 14%); }
+    .button-primary { border-color: var(--gold); background: var(--gold); color: #17202a; }
+    .button-quiet { border-color: var(--line); background: transparent; color: var(--muted); }
+    .button-danger { border-color: color-mix(in srgb, var(--danger), transparent 45%); color: var(--danger); }
+
+    .panel {
+      min-width: 0;
+      padding: clamp(1rem, 3vw, 1.6rem);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .08);
+    }
+
+    .panel h3 { margin: 0 0 .55rem; font-family: var(--serif); font-size: 1.35rem; font-weight: 600; }
+    .panel p { margin: 0; color: var(--muted); }
+    .grid-2, .grid-3 { display: grid; gap: 1rem; }
+    .foundation-grid { display: grid; gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
+    .foundation-tile { min-width: 0; padding: 1.35rem; background: var(--ink-1); }
+    .foundation-tile small { color: var(--gold); font-family: var(--mono); }
+    .foundation-tile h3 { margin: 1.4rem 0 .35rem; font-family: var(--serif); font-size: 1.35rem; }
+    .foundation-tile p { margin: 0; color: var(--muted); }
+
+    .render-region {
+      position: relative;
+      min-height: 170px;
+      min-width: 0;
+      padding: 1rem;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--gold-wash), transparent 38%);
+    }
+
+    .render-region:empty::before { content: attr(data-empty-label); color: var(--faint); font-family: var(--mono); font-size: .75rem; }
+    .filter-mount { min-height: 48px; margin-bottom: 1rem; }
+
+    .timeline-frame { position: relative; padding-left: 1.4rem; }
+    .timeline-frame::before { position: absolute; inset: 0 auto 0 6px; width: 1px; background: linear-gradient(var(--gold), var(--line)); content: ""; }
+
+    .concept-stage { display: grid; gap: 1rem; }
+    .view-tabs { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .25rem; scrollbar-width: thin; }
+    .tab-chip { flex: 0 0 auto; padding: .45rem .7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .78rem; }
+
+    .anatomy-board { display: grid; gap: 1rem; }
+    .agent-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
+    .agent-layer { min-height: 110px; padding: 1.1rem; background: var(--ink-1); }
+    .agent-layer b { display: block; color: var(--gold); font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; }
+    .agent-layer span { display: block; margin-top: .75rem; color: var(--muted); font-size: .88rem; }
+
+    .loop-console { overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #07121c; color: #e8f0f2; box-shadow: var(--shadow); }
+    .console-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, .1); color: #a9bac4; font-family: var(--mono); font-size: .7rem; }
+    .console-lights { display: flex; gap: .4rem; }
+    .console-lights i { width: 7px; aspect-ratio: 1; border-radius: 50%; background: #60717c; }
+    .console-lights i:first-child { background: var(--gold); }
+    .loop-nodes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; padding: 1rem; }
+    .loop-node { position: relative; min-width: 0; padding: .8rem; border: 1px solid rgba(255, 255, 255, .11); border-radius: 10px; background: rgba(255, 255, 255, .025); }
+    .loop-node[data-state="active"] { border-color: var(--gold); background: rgba(231, 189, 106, .11); }
+    .loop-node code { color: var(--gold); font-size: .65rem; }
+    .loop-node strong { display: block; margin-top: .25rem; color: #eef3f5; font-family: var(--serif); font-size: .98rem; }
+    .loop-node small { color: #8fa4af; }
+    .console-grid { display: grid; border-top: 1px solid rgba(255, 255, 255, .1); }
+    .console-pane { min-width: 0; min-height: 130px; padding: 1rem; }
+    .console-pane + .console-pane { border-top: 1px solid rgba(255, 255, 255, .1); }
+    .console-pane h3 { margin: 0 0 .6rem; color: #8198a4; font-family: var(--mono); font-size: .68rem; text-transform: uppercase; }
+    .console-pane pre { max-width: 100%; margin: 0; overflow: auto; color: #c3d2d8; font: .74rem/1.7 var(--mono); white-space: pre-wrap; }
+    .loop-status { display: grid; gap: .55rem; }
+    .status-line { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted rgba(255, 255, 255, .12); color: #c3d2d8; font-size: .76rem; }
+    .loop-controls { display: flex; flex-wrap: wrap; gap: .6rem; padding: 1rem; border-top: 1px solid rgba(255, 255, 255, .1); }
+
+    .relation-map { display: grid; gap: .8rem; }
+    .relation-core { padding: 1.25rem; border: 1px solid var(--gold); border-radius: 50%; background: var(--gold-wash); color: var(--gold-strong); text-align: center; }
+    .relation-branch { padding: 1rem; border-left: 2px solid var(--cyan); background: var(--panel); }
+    .relation-branch strong { display: block; font-family: var(--serif); }
+    .relation-branch span { color: var(--muted); font-size: .82rem; }
+
+    .table-note { display: flex; align-items: center; gap: .55rem; margin: 0 0 .55rem; color: var(--muted); font-size: .78rem; }
+    .table-note::before { content: "↔"; color: var(--gold); font-family: var(--mono); }
+    .table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 680px; border-collapse: collapse; text-align: left; }
+    th, td { padding: .85rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--gold); font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; }
+    td { color: var(--muted); font-size: .88rem; }
+
+    .simulator { display: grid; gap: 1rem; }
+    .sim-result { min-height: 190px; border-color: var(--line-strong); }
+    .meter { height: 12px; overflow: hidden; border: 1px solid var(--line); border-radius: 99px; background: var(--ink-0); }
+    .meter > span { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--safe), var(--gold)); transition: width .35s ease; }
+
+    .verdict {
+      position: relative;
+      overflow: hidden;
+      border-color: var(--line-strong);
+      background: linear-gradient(130deg, var(--gold-wash), var(--panel) 48%);
+    }
+
+    .verdict::after { position: absolute; top: -1.4rem; right: 1rem; color: var(--gold); content: "条件化"; font-family: var(--serif); font-size: clamp(2.5rem, 10vw, 6rem); opacity: .055; transform: rotate(-7deg); }
+    .verdict strong { color: var(--gold-strong); }
+
+    .module-rail { min-height: 260px; }
+    .memory-layout, .decision-layout { display: grid; gap: 1rem; }
+    .memory-layout > *, .decision-layout > *, .grid-2 > * { min-width: 0; }
+    .memory-layout .field, .decision-layout .field { min-width: 0; max-width: 100%; }
+    .memory-layout .view-tabs { width: 100%; max-width: 100%; }
+    .memory-output, .decision-output { min-height: 190px; }
+    .option-list { display: grid; gap: .55rem; }
+    .option-row { display: flex; align-items: start; gap: .65rem; padding: .65rem; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); }
+    .option-row input { margin-top: .35rem; accent-color: var(--gold); }
+
+    .decision-route { display: grid; gap: .6rem; margin-top: 1rem; }
+    .route-step { display: grid; grid-template-columns: 2rem 1fr; gap: .65rem; padding: .65rem; border-left: 1px solid var(--line-strong); color: var(--muted); }
+    .route-step b { color: var(--gold); font-family: var(--mono); }
+
+    .safety-rule { position: relative; min-height: 180px; padding-top: 4rem; }
+    .safety-rule::before { position: absolute; top: 1rem; left: 1rem; color: var(--gold); content: attr(data-rule); font-family: var(--serif); font-size: 2.5rem; line-height: 1; opacity: .42; }
+
+    .learning-resource-list { display: grid; gap: 1rem; }
+    .learning-resource-card { display: grid; gap: .8rem; min-width: 0; }
+    .learning-resource-card h3 { margin: 0; }
+    .resource-title-en { color: var(--muted); font-family: var(--serif); font-size: .95rem; line-height: 1.45; }
+    .resource-meta, .resource-topics { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .resource-chip { padding: .28rem .55rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .72rem; line-height: 1.35; }
+    .resource-chip-officiality { border-color: var(--line-strong); color: var(--gold-strong); }
+    .resource-evidence { padding-top: .8rem; border-top: 1px solid var(--line); }
+    .resource-evidence p { margin-top: .35rem; font-size: .84rem; }
+    .resource-link { justify-self: start; color: var(--gold-strong); font-weight: 750; }
+    .learning-results { margin: -.25rem 0 1rem; color: var(--muted); font-size: .82rem; }
+
+    .challenge-grid { display: grid; gap: 1rem; }
+    .review-panel { border-color: var(--line-strong); }
+    .reward-board { display: grid; gap: 1rem; }
+    .reward-level { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .reward-level strong { color: var(--gold-strong); font-family: var(--serif); font-size: 1.5rem; }
+    .badges-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+    .badge-card { min-width: 0; padding: .75rem; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .78rem; }
+    .badge-card b { display: block; color: var(--paper); }
+
+    .certificate {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(1.4rem, 5vw, 3.6rem);
+      border: 1px solid var(--gold);
+      background: linear-gradient(140deg, var(--panel), var(--gold-wash));
+      text-align: center;
+    }
+
+    .certificate::before, .certificate::after { position: absolute; width: 100px; aspect-ratio: 1; border: 1px solid var(--line-strong); border-radius: 50%; content: ""; }
+    .certificate::before { top: -50px; left: -50px; }
+    .certificate::after { right: -50px; bottom: -50px; }
+    .certificate-kicker { color: var(--gold); font-family: var(--mono); font-size: .72rem; letter-spacing: .2em; }
+    .certificate h3 { margin: .6rem 0; font-family: var(--serif); font-size: clamp(2rem, 8vw, 4.4rem); font-weight: 500; }
+    .certificate-name-preview { min-height: 1.8em; color: var(--gold-strong); font-family: var(--serif); font-size: 1.5rem; }
+    .certificate-controls { display: grid; gap: .7rem; max-width: 520px; margin: 1.5rem auto 0; text-align: left; }
+
+    .source-ledger { min-height: 220px; }
+    .source-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .source-tag { padding: .35rem .55rem; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: .7rem; }
+
+    .section-tools { position: absolute; top: 1.1rem; right: 1.1rem; display: flex; gap: .5rem; }
+    .icon-button { display: grid; width: 42px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--panel); color: var(--paper); }
+
+    .bottom-progress {
+      position: fixed;
+      inset: auto .75rem .75rem;
+      z-index: 35;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: .75rem;
+      padding: .65rem .8rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--ink-1) 92%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .bottom-progress .progress-track { margin: 0; }
+    @media (max-width: 1099px) {
+      .bottom-progress { display: none; }
+    }
+    .reward-toast {
+      position: fixed;
+      right: 1rem;
+      bottom: 5.5rem;
+      z-index: 80;
+      width: min(calc(100% - 2rem), 360px);
+      padding: 1rem;
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      background: var(--panel-solid);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .reward-toast[data-state="visible"] { opacity: 1; transform: translateY(0); }
+    .reward-toast strong { display: block; color: var(--gold-strong); }
+    .reward-toast span { color: var(--muted); font-size: .85rem; }
+    .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+
+    dialog {
+      width: min(calc(100% - 2rem), 680px);
+      max-height: min(86vh, 760px);
+      overflow: auto;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--panel-solid);
+      color: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    dialog::backdrop { background: rgba(2, 8, 13, .72); backdrop-filter: blur(6px); }
+    .modal-head { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--panel-solid); }
+    .modal-head h2 { margin: 0; font-family: var(--serif); font-size: 1.35rem; }
+    .modal-body { padding: 1.2rem; color: var(--muted); }
+
+    noscript { display: block; max-width: var(--max-content); margin: 1rem auto 6rem; padding: 1rem; }
+    .noscript-summary { padding: clamp(1.1rem, 4vw, 2rem); border: 2px solid var(--gold); border-radius: var(--radius); background: var(--panel-solid); }
+    .noscript-summary h2 { margin-top: 0; font-family: var(--serif); }
+    .noscript-summary p { color: var(--muted); }
+
+    @media (min-width: 620px) {
+      .route-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .route-panel .nav-kicker { grid-column: 1 / -1; }
+      .foundation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2, .memory-layout, .decision-layout, .reward-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .loop-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .console-grid { grid-template-columns: 1.35fr .65fr; }
+      .console-pane + .console-pane { border-top: 0; border-left: 1px solid rgba(255, 255, 255, .1); }
+      .relation-map { grid-template-columns: 1fr 1.2fr; align-items: center; }
+      .relation-core { grid-row: span 3; }
+      .badges-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 768px) {
+      .course-section { padding: 7rem clamp(2rem, 5vw, 4rem); }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .foundation-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .anatomy-board { grid-template-columns: .72fr 1.28fr; align-items: start; }
+      .agent-stack { grid-template-columns: 1fr; }
+      .simulator { grid-template-columns: .82fr 1.18fr; }
+      .challenge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .learning-resource-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bottom-progress { right: 1.5rem; bottom: 1.5rem; left: 1.5rem; }
+    }
+
+    @media (min-width: 1100px) {
+      html { scroll-padding-top: 1rem; }
+      .mobile-header, .bottom-progress { display: none; }
+      .course-nav { display: block; }
+      .shell { margin-left: var(--nav-width); }
+      .course-section { min-height: 76vh; padding-block: 8rem; }
+      .hero { min-height: 100vh; }
+      .hero-grid { grid-template-columns: 1.1fr .9fr; align-items: end; }
+      .route-panel { grid-template-columns: 1fr; align-self: end; }
+      .route-panel .nav-kicker { grid-column: auto; }
+      .section-tools { top: 2rem; right: 3rem; }
+      .reward-toast { bottom: 1.5rem; }
+    }
+
+    @media (min-width: 1440px) {
+      :root { --nav-width: 310px; --max-content: 1240px; }
+      .course-section { padding-inline: 5rem; }
+      .hero h1 { font-size: 8.4rem; }
+      .foundation-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .foundation-tile { min-height: 230px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media (prefers-contrast: more) {
+      :root { --line: rgba(231, 243, 247, .42); --line-strong: rgba(255, 217, 142, .75); --muted: #d2dde1; --faint: #b4c4cb; }
+      html[data-theme="light"] { --line: rgba(20, 39, 53, .42); --line-strong: rgba(114, 75, 14, .72); --muted: #304853; --faint: #3f5660; }
+      .button, .input, select, textarea { border-width: 2px; }
+    }
+
+    @media (forced-colors: active) {
+      * { forced-color-adjust: auto; }
+      .progress-fill, .meter > span { background: Highlight; }
+    }
+
+    @media print {
+      :root, html[data-theme="light"] { color-scheme: light; --ink-0: #fff; --ink-1: #fff; --ink-2: #fff; --paper: #111; --muted: #333; --faint: #555; --gold: #76500e; --gold-strong: #543704; --line: #bbb; --line-strong: #76500e; --panel: #fff; --panel-solid: #fff; --shadow: none; }
+      body { background: #fff; font-size: 10pt; }
+      body::before, .course-nav, .mobile-header, .bottom-progress, .section-tools, .toolbar, .control-row, .loop-controls, .certificate-controls, .reward-toast, dialog, .button { display: none !important; }
+      .shell { margin: 0; }
+      .course-section { min-height: auto; max-width: none; padding: 1.2cm 0; break-inside: avoid; }
+      .hero { min-height: auto; }
+      .hero h1 { font-size: 42pt; }
+      .section-head h2 { font-size: 28pt; }
+      .panel, .render-region, .certificate { box-shadow: none; break-inside: avoid; }
+      .certificate { display: block !important; min-height: 16cm; padding-top: 4cm; page-break-before: always; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到课程正文</a>
+
+  <header class="mobile-header" aria-label="移动端课程页头">
+    <div class="mobile-brand"><span class="compass-mark" aria-hidden="true"></span><span>AI 知识航图</span></div>
+    <a class="lang-switch" data-testid="lang-switch" href="en/index.html" hreflang="en" lang="en">English</a>
+    <div class="mobile-progress" aria-label="课程进度">
+      <div class="progress-meta"><span>航程</span><span data-progress-label>0%</span></div>
+      <div class="progress-track" role="progressbar" aria-label="学习进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" data-progress-fill></div></div>
+    </div>
+    <label class="mobile-section-nav" for="mobile-section-select"><span>章节跳转</span><select id="mobile-section-select" data-testid="mobile-section-nav" aria-label="跳转到课程章节"><option value="hero">00 · 起航</option><option value="foundations">01 · AI 基础</option><option value="timeline">02 · 范式时间线</option><option value="concepts">03 · 概念实验室</option><option value="anatomy">04 · Agent 解剖台</option><option value="extensions">05 · 扩展能力</option><option value="landscape">06 · 产品地图</option><option value="subscriptions">07 · 订阅实验室</option><option value="compare">08 · 公平比较</option><option value="hermes">09 · Hermes 学院</option><option value="control">10 · 控制路线</option><option value="safety">11 · 安全驾驶</option><option value="challenge">12 · 挑战与结业</option><option value="learning">13 · 拓展学习</option><option value="sources">14 · 来源与时效</option></select></label>
+  </header>
+
+  <aside class="course-nav" aria-label="课程章节导航">
+    <div class="nav-inner">
+      <div class="nav-kicker">Course atlas · 2026</div>
+      <div class="nav-title">AI 与 AI Agent<br>双轨知识航图</div>
+      <div class="nav-progress">
+        <div class="progress-meta"><span>总航程</span><span data-progress-label>0%</span></div>
+        <div class="progress-track" role="progressbar" aria-label="总学习进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" data-progress-fill></div></div>
+      </div>
+      <nav class="nav-links" aria-label="主章节">
+        <a href="#hero"><span>00</span>起航</a>
+        <a href="#foundations"><span>01</span>AI 基础</a>
+        <a href="#timeline"><span>02</span>范式时间线</a>
+        <a href="#concepts"><span>03</span>概念实验室</a>
+        <a href="#anatomy"><span>04</span>Agent 解剖台</a>
+        <a href="#extensions"><span>05</span>扩展能力</a>
+        <a href="#landscape"><span>06</span>产品地图</a>
+        <a href="#subscriptions"><span>07</span>订阅实验室</a>
+        <a href="#compare"><span>08</span>公平比较</a>
+        <a href="#hermes"><span>09</span>Hermes 学院</a>
+        <a href="#control"><span>10</span>控制路线</a>
+        <a href="#safety"><span>11</span>安全驾驶</a>
+        <a href="#challenge"><span>12</span>挑战与结业</a>
+        <a href="#learning"><span>13</span>拓展学习</a>
+        <a href="#sources"><span>14</span>来源与时效</a>
+      </nav>
+      <section class="xp-panel" aria-labelledby="xp-title">
+        <div class="status-label" id="xp-title">Learning signal</div>
+        <div class="xp-row"><strong class="xp-number" data-xp>0 XP</strong><span class="level-name" data-level>AI 探路者</span></div>
+        <div class="badge-strip" aria-label="徽章概览">
+          <span class="badge-dot" data-earned="false" title="时间旅行者">01</span>
+          <span class="badge-dot" data-earned="false" title="术语收藏家">02</span>
+          <span class="badge-dot" data-earned="false" title="安全守门员">03</span>
+          <span class="badge-dot" data-earned="false" title="循环架构师">04</span>
+        </div>
+      </section>
+    </div>
+  </aside>
+
+  <div class="shell">
+    <main id="main-content" tabindex="-1">
+      <section class="course-section hero" id="hero" aria-labelledby="hero-title">
+        <div class="section-tools" aria-label="页面设置">
+          <button class="icon-button" type="button" data-testid="theme-toggle" aria-label="切换深浅主题" aria-pressed="false"><span aria-hidden="true">◐</span></button>
+          <button class="icon-button button-danger" type="button" data-testid="progress-reset" aria-label="清除本地学习进度"><span aria-hidden="true">↺</span></button>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">一张可核实、可反复学习的航图</div>
+            <h1 id="hero-title">从模型到 <em>Agent</em></h1>
+            <p class="hero-lead">看懂 AI 如何生成、Agent 如何行动，以及人应当在哪里握住方向盘。专业定义与白话解释同屏，按你的经验选择航线。</p>
+            <div class="hero-facts" aria-label="课程信息">
+              <span class="fact">核实日 2026-08-22</span>
+              <span class="fact">每季度复核一次 / Reviewed quarterly.</span>
+              <span class="fact">核心学习路径 90–120 分钟；完整阅读图谱需要更久</span>
+              <span class="fact">离线学习 · 本地进度</span>
+            </div>
+            <p><a class="lang-switch" href="en/index.html" hreflang="en" lang="en">Read the English edition</a></p>
+            <p class="disclaimer">免责声明：本课程用于通识与安全教育，不构成产品采购、财务、法律或信息安全承诺；价格、额度和产品能力可能变化，请以对应官方控制台与条款为准。</p>
+          </div>
+          <div class="route-panel" aria-labelledby="route-title">
+            <div class="nav-kicker" id="route-title">选择你的学习视角</div>
+            <button class="route-card" type="button" data-testid="audience-beginner" aria-pressed="true">
+              <span class="route-code">A</span><span class="route-copy"><strong>零 IT 基础</strong><small>先结论、白话、生活类比与安全提示</small></span><span class="route-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="route-card" type="button" data-testid="audience-engineer" aria-pressed="false">
+              <span class="route-code">B</span><span class="route-copy"><strong>通用 IT 技术背景</strong><small>具备技术基础，但初学生成式 AI 与 AI Agent</small></span><span class="route-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="course-section" id="foundations" aria-labelledby="foundations-title">
+        <div class="section-head">
+          <div class="section-index">01 · Foundations</div>
+          <h2 id="foundations-title">AI 到底是什么</h2>
+          <p>先建立语言模型的最小心智模型：它根据上下文预测并生成内容，能力来自训练与推理，但流畅表达不等于事实可靠或真正理解。</p>
+        </div>
+        <div class="foundation-grid" aria-label="基础概念视觉骨架">
+          <article class="foundation-tile"><small>01 / 06</small><h3>生成式 AI</h3><p>从输入条件出发生成文本、图像或其他内容的系统类别。</p></article>
+          <article class="foundation-tile"><small>02 / 06</small><h3>LLM</h3><p>以大量参数学习语言模式的基础模型，不等同于聊天产品。</p></article>
+          <article class="foundation-tile"><small>03 / 06</small><h3>Token</h3><p>模型处理文本时使用的离散单位，也是常见计量基础。</p></article>
+          <article class="foundation-tile"><small>04 / 06</small><h3>Context</h3><p>本次推理能读取的信息范围，并非永久记忆。</p></article>
+          <article class="foundation-tile"><small>05 / 06</small><h3>Prompt</h3><p>给模型的输入与约束，包括系统级和用户级指令。</p></article>
+          <article class="foundation-tile"><small>06 / 06</small><h3>Hallucination</h3><p>输出看似可信但缺少事实依据，需要核实而非盲信。</p></article>
+        </div>
+      </section>
+
+      <section class="course-section" id="timeline" aria-labelledby="timeline-title">
+        <div class="section-head">
+          <div class="section-index">02 · Timeline</div>
+          <h2 id="timeline-title">交互范式时间线</h2>
+          <p>从 2022-11-30 到 2026-08-22，只追踪真正改变普通人交互方式或工程实践的节点，并说明其教学意义与来源。</p>
+        </div>
+        <div id="timeline-year-filter" class="render-region filter-mount" data-testid="timeline-year-filter" data-empty-label="年份筛选将在此渲染" aria-label="按年份筛选时间线"></div>
+        <div class="timeline-frame"><div id="timeline-list" class="render-region" data-testid="timeline-list" data-empty-label="时间线事件将在此渲染"></div></div>
+      </section>
+
+      <section class="course-section" id="concepts" aria-labelledby="concepts-title">
+        <div class="section-head">
+          <div class="section-index">03 · Concept lab</div>
+          <h2 id="concepts-title">概念实验室</h2>
+          <p>用专业、白话、生活类比和通用 IT 类比四个视角拆解术语，同时保留误区、安全与成本边界。</p>
+        </div>
+        <div class="concept-stage">
+          <div class="toolbar">
+            <label class="field field-grow"><span class="field-label">搜索术语</span><input id="concept-search" class="input" type="search" data-testid="concept-search" autocomplete="off" placeholder="输入中文或 English term"></label>
+            <label class="field"><span class="field-label">概念类别</span><select id="concept-category-filter" data-testid="concept-category-filter"><option value="">全部类别</option></select></label>
+          </div>
+          <div class="view-tabs" aria-label="概念解释视角"><span class="tab-chip">专业定义</span><span class="tab-chip">白话解释</span><span class="tab-chip">生活类比</span><span class="tab-chip">IT 技术类比</span></div>
+          <div id="concept-list" class="render-region" data-testid="concept-list" data-empty-label="概念卡片将在此渲染"></div>
+        </div>
+      </section>
+
+      <section class="course-section" id="anatomy" aria-labelledby="anatomy-title">
+        <div class="section-head">
+          <div class="section-index">04 · Agent anatomy</div>
+          <h2 id="anatomy-title">Agent 解剖台</h2>
+          <p>Agent 不是单独一个模型，而是模型、运行壳、工具、记忆、循环与护栏共同组成的受控执行系统。</p>
+        </div>
+        <div class="anatomy-board">
+          <div class="agent-stack" aria-label="Agent 六层组成">
+            <div class="agent-layer"><b>MODEL</b><span>推理与生成</span></div>
+            <div class="agent-layer"><b>HARNESS</b><span>承载与编排</span></div>
+            <div class="agent-layer"><b>TOOLS</b><span>执行动作</span></div>
+            <div class="agent-layer"><b>MEMORY</b><span>外部存取</span></div>
+            <div class="agent-layer"><b>LOOP</b><span>观察与迭代</span></div>
+            <div class="agent-layer"><b>GUARDRAILS</b><span>权限与停止条件</span></div>
+          </div>
+          <div class="loop-console" aria-labelledby="loop-title">
+            <div class="console-bar"><span id="loop-title">AGENT LOOP / STEP MODE</span><span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="loop-nodes" aria-label="Agent Loop 六个可视节点">
+              <div class="loop-node" data-loop-node="reason" data-state="active"><code>01</code><strong>Reason</strong><small>理解目标与约束</small></div>
+              <div class="loop-node" data-loop-node="tool"><code>02</code><strong>Tool</strong><small>选择最小权限工具</small></div>
+              <div class="loop-node" data-loop-node="act"><code>03</code><strong>Act</strong><small>执行受控动作</small></div>
+              <div class="loop-node" data-loop-node="observe"><code>04</code><strong>Observe</strong><small>读取环境反馈</small></div>
+              <div class="loop-node" data-loop-node="verify"><code>05</code><strong>Verify</strong><small>检查完成标准</small></div>
+              <div class="loop-node" data-loop-node="memory-stop"><code>06</code><strong>Memory or Stop</strong><small>写入必要记忆或停止</small></div>
+            </div>
+            <div class="console-grid">
+              <section class="console-pane" aria-labelledby="loop-log-title"><h3 id="loop-log-title">运行日志</h3><pre id="loop-log" aria-live="polite">[ready] 等待开始单步演示…</pre></section>
+              <section class="console-pane" aria-labelledby="loop-status-title"><h3 id="loop-status-title">状态</h3><div id="loop-status" class="loop-status"><div class="status-line"><span>步骤</span><b>0 / 6</b></div><div class="status-line"><span>工具</span><b>待选择</b></div><div class="status-line"><span>重试</span><b>0</b></div><div class="status-line"><span>停止条件</span><b>未满足</b></div></div></section>
+            </div>
+            <div class="loop-controls" aria-label="Agent Loop 控制">
+              <button class="button button-primary" type="button" data-testid="loop-step">单步运行</button>
+              <button class="button" type="button" data-testid="loop-auto" aria-pressed="false">自动演示</button>
+              <button class="button button-danger" type="button" data-testid="loop-fault" aria-pressed="false">注入工具失败</button>
+              <button class="button button-quiet" type="button" data-testid="loop-reset">重置循环</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="course-section" id="extensions" aria-labelledby="extensions-title">
+        <div class="section-head">
+          <div class="section-index">05 · Extensions</div>
+          <h2 id="extensions-title">扩展能力不是一回事</h2>
+          <p>Plugin、MCP、Skill、CLI、Browser 与 Computer Use 位于不同层级：有的是扩展包，有的是协议，有的是操作手册，有的是实际控制通道。</p>
+        </div>
+        <div class="relation-map" aria-label="扩展能力关系图">
+          <div class="relation-core"><strong>Agent<br>Harness</strong></div>
+          <div class="relation-branch"><strong>连接与描述</strong><span>Plugin · MCP · Agent Skills</span></div>
+          <div class="relation-branch"><strong>直接执行</strong><span>Tool · API · CLI</span></div>
+          <div class="relation-branch"><strong>界面控制</strong><span>Browser DOM/CDP · Computer Use</span></div>
+        </div>
+        <details class="panel" style="margin-top:1rem"><summary>“该选哪个”决策树</summary><p style="margin-top:.7rem">优先选择稳定、可审计、权限更小的接口；只有缺少更直接的控制面时，才逐级进入浏览器或桌面控制。</p></details>
+      </section>
+
+      <section class="course-section" id="landscape" aria-labelledby="landscape-title">
+        <div class="section-head">
+          <div class="section-index">06 · Landscape</div>
+          <h2 id="landscape-title">主流产品分层地图</h2>
+          <p>基础模型、聊天产品、编码 Agent、个人 Agent、框架和自动化平台必须分层比较，避免把不同产品层级混成排行榜。</p>
+        </div>
+        <div id="product-filters" class="render-region filter-mount" data-testid="product-filters" data-empty-label="地区、类型与执行级别筛选将在此渲染" aria-label="产品筛选器"></div>
+        <div id="product-list" class="render-region" data-testid="product-list" data-empty-label="产品地图将在此渲染"></div>
+      </section>
+
+      <section class="course-section" id="subscriptions" aria-labelledby="subscriptions-title">
+        <div class="section-head">
+          <div class="section-index">07 · Subscriptions</div>
+          <h2 id="subscriptions-title">国内订阅实验室</h2>
+          <p>订阅套餐与生产 API 是两种不同的购买和使用关系；公开价格、额度窗口和适用工具都应以核实日与官方说明为准。</p>
+        </div>
+        <p class="table-note" id="subscription-scroll-note">下方表格可横向滚动；键盘用户可聚焦表格区域后使用方向键。</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="subscription-scroll-note">
+          <div id="subscription-list" data-testid="subscription-list" class="render-region" data-empty-label="订阅核实表将在此渲染"></div>
+        </div>
+        <div class="panel" style="margin-top:1.5rem" aria-labelledby="quota-title">
+          <h3 id="quota-title">额度窗口模拟器</h3>
+          <p>教学模拟：一次 Prompt 可能触发多次模型调用；实际以控制台为准，模拟结果不是账单或可用次数预测。</p>
+          <div class="simulator" style="margin-top:1rem">
+            <form class="grid-2" aria-label="额度模拟参数">
+              <label class="field"><span class="field-label">平台</span><select data-testid="quota-platform"><option value="">请选择平台</option></select></label>
+              <label class="field"><span class="field-label">档位</span><select data-testid="quota-plan"><option value="">请选择档位</option></select></label>
+              <label class="field"><span class="field-label">任务强度</span><select data-testid="quota-intensity"><option value="light">轻量</option><option value="medium">中等</option><option value="heavy">高强度</option></select></label>
+              <button class="button button-primary" type="button" data-testid="quota-run">运行教学模拟</button>
+            </form>
+            <div class="panel sim-result" id="quota-result" aria-live="polite">
+              <div class="status-label">Simulation output</div><h3>等待参数</h3><p>运行后将在这里显示调用放大、额度窗口和重置规则的示意结果。</p><div class="meter" aria-hidden="true" style="margin-top:1rem"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="course-section" id="compare" aria-labelledby="compare-title">
+        <div class="section-head">
+          <div class="section-index">08 · Fair comparison</div>
+          <h2 id="compare-title">OpenClaw 与 Hermes</h2>
+          <p>比较应基于同一类任务、权限需求、维护成本与学习目标，不把个人偏好写成绝对胜负。</p>
+        </div>
+        <div id="comparison-list" class="render-region" data-testid="comparison-list" data-empty-label="公平比较维度将在此渲染"></div>
+        <aside class="panel verdict" style="margin-top:1rem" aria-label="条件化推荐说明"><h3>普通个人为何通常默认推荐 Hermes</h3><p><strong>这是条件化结论，不是全面优于。</strong> 当学习者希望从命令行起步、逐步理解工具与记忆边界，并接受显式审批时，Hermes 常是更清晰的学习路径；若需求、生态或运行环境不同，结论也会改变。</p></aside>
+      </section>
+
+      <section class="course-section" id="hermes" aria-labelledby="hermes-title">
+        <div class="section-head">
+          <div class="section-index">09 · Hermes academy</div>
+          <h2 id="hermes-title">Hermes 学院</h2>
+          <p>从安装前核实、setup 与 doctor，到 tools、memory、skills、MCP、gateway、cron 和 session，按“先可见、再授权、后自动化”的顺序学习。</p>
+        </div>
+        <div id="hermes-modules" class="render-region module-rail" data-testid="hermes-modules" data-empty-label="Hermes 学习模块与命令清单将在此渲染"></div>
+        <div class="panel" style="margin-top:1.5rem" aria-labelledby="memory-title">
+          <h3 id="memory-title">Memory 归档沙盘</h3>
+          <p>判断一段信息应该进入 USER、MEMORY、Session Search、Skill、Cron，还是根本不应保存。</p>
+          <div class="memory-layout" style="margin-top:1rem">
+            <div>
+              <label class="field"><span class="field-label">待判断内容</span><textarea data-testid="memory-prompt" placeholder="输入偏好、临时任务、操作流程或敏感值的示例"></textarea><small>仅使用虚构或脱敏示例，勿在课程中粘贴真实密码、Cookie、Token、私钥或恢复码。</small></label>
+              <fieldset class="option-list" style="margin:1rem 0;padding:0;border:0">
+                <legend class="field-label">你的归档判断</legend>
+                <label class="option-row"><input type="radio" name="memory-place" value="user" data-testid="memory-options"><span>USER：稳定的个人偏好</span></label>
+                <label class="option-row"><input type="radio" name="memory-place" value="memory"><span>MEMORY：可复用事实或经验</span></label>
+                <label class="option-row"><input type="radio" name="memory-place" value="session"><span>Session Search：过往会话线索</span></label>
+                <label class="option-row"><input type="radio" name="memory-place" value="skill"><span>Skill / Cron：流程或定时任务</span></label>
+                <label class="option-row"><input type="radio" name="memory-place" value="never"><span>不应保存：秘密或无必要信息</span></label>
+              </fieldset>
+              <button class="button button-primary" type="button" data-testid="memory-check">检查判断</button>
+            </div>
+            <div class="panel memory-output" id="memory-result" aria-live="polite"><div class="status-label">Placement review</div><h3>等待你的判断</h3><p>这里会解释推荐位置、保留时长、写入审批与安全原因。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="course-section" id="control" aria-labelledby="control-title">
+        <div class="section-head">
+          <div class="section-index">10 · Control route</div>
+          <h2 id="control-title">最小权限控制决策器</h2>
+          <p>控制能力越接近桌面，看到和影响的范围通常越大；应优先走 API、CLI，再到 Browser DOM/CDP，最后才考虑桌面可访问性或视觉控制。</p>
+        </div>
+        <div class="panel decision-layout" aria-labelledby="decision-title">
+          <form>
+            <h3 id="decision-title">描述任务边界</h3>
+            <label class="field"><span class="field-label">任务目标</span><input class="input" type="text" name="decision-task" placeholder="例如：读取公开页面并整理摘要"></label>
+            <fieldset class="option-list" style="margin:1rem 0;padding:0;border:0">
+              <legend class="field-label">必要能力</legend>
+              <label class="option-row"><input type="checkbox" name="capability" value="read"><span>只读信息</span></label>
+              <label class="option-row"><input type="checkbox" name="capability" value="write"><span>写入或修改</span></label>
+              <label class="option-row"><input type="checkbox" name="capability" value="login"><span>需要登录态</span></label>
+              <label class="option-row"><input type="checkbox" name="capability" value="desktop"><span>只能通过桌面界面完成</span></label>
+            </fieldset>
+            <button class="button button-primary" type="button" data-testid="decision-start">生成最小权限路线</button>
+          </form>
+          <div class="panel decision-output" id="decision-result" aria-live="polite">
+            <div class="status-label">Recommended route</div><h3>等待任务边界</h3>
+            <div class="decision-route" aria-label="权限路线优先级"><div class="route-step"><b>01</b><span>API</span></div><div class="route-step"><b>02</b><span>CLI</span></div><div class="route-step"><b>03</b><span>Browser DOM / CDP</span></div><div class="route-step"><b>04</b><span>Desktop Accessibility / Vision</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="course-section" id="safety" aria-labelledby="safety-title">
+        <div class="section-head">
+          <div class="section-index">11 · Safety driving</div>
+          <h2 id="safety-title">能力越强，护栏越近</h2>
+          <p>Agent 的自主必须同时带有预算、最小权限、审批、隔离、验证、停止条件和回滚路径；最终责任不能交给模型。</p>
+        </div>
+        <div class="grid-3">
+          <article class="panel safety-rule" data-rule="01"><h3>最小权限</h3><p>只授予当前任务所需的最小范围，读写分离，敏感操作明确审批。</p></article>
+          <article class="panel safety-rule" data-rule="02"><h3>先看差异</h3><p>使用 dry-run、diff、backup 与 rollback，让变更可检查、可撤销。</p></article>
+          <article class="panel safety-rule" data-rule="03"><h3>隔离与秘密</h3><p>浏览器会话隔离，密钥进入秘密存储，不贴进聊天或日志。</p></article>
+          <article class="panel safety-rule" data-rule="04"><h3>抵抗注入</h3><p>网页和文件中的指令属于不可信输入，不得覆盖系统目标与授权边界。</p></article>
+          <article class="panel safety-rule" data-rule="05"><h3>可观察</h3><p>保留工具调用、失败、重试与停止原因，使人能够复核执行过程。</p></article>
+          <article class="panel safety-rule" data-rule="06"><h3>人类复核</h3><p>高影响结果由人确认；不要把 YOLO 或关闭审批设为新手默认值。</p></article>
+        </div>
+      </section>
+
+      <section class="course-section" id="challenge" aria-labelledby="challenge-title">
+        <div class="section-head">
+          <div class="section-index">12 · Challenge</div>
+          <h2 id="challenge-title">挑战、复习与结业</h2>
+          <p>测验不只判断对错，还要解释原因；错题进入复习清单，安全题强调为什么某条边界不能省略。</p>
+        </div>
+        <div class="challenge-grid">
+          <div id="quiz-list" class="render-region" data-testid="quiz-list" data-empty-label="至少 12 道解释型测验将在此渲染"></div>
+          <div id="scenario-list" class="render-region" data-testid="scenario-list" data-empty-label="至少 4 个情境挑战将在此渲染"></div>
+        </div>
+        <div class="reward-board" style="margin-top:1rem">
+          <section class="panel" aria-labelledby="reward-title">
+            <div class="status-label">XP · Level · Badges</div>
+            <div class="reward-level"><h3 id="reward-title">学习奖励面板</h3><strong data-xp>0 XP</strong></div>
+            <p>奖励只记录首次完成，反馈说明你刚学会了什么，不以重复点击刷分。</p>
+            <div class="badges-grid" aria-label="可获得徽章" style="margin-top:1rem">
+              <div class="badge-card"><b>时间旅行者</b>完成时间线</div><div class="badge-card"><b>术语收藏家</b>掌握核心术语</div><div class="badge-card"><b>额度侦探</b>看懂额度窗口</div><div class="badge-card"><b>安全守门员</b>完成安全挑战</div><div class="badge-card"><b>Hermes 导航员</b>完成学院模块</div><div class="badge-card"><b>循环架构师</b>完成 Loop 演示</div><div class="badge-card"><b>双轨毕业生</b>完成双视角课程</div>
+            </div>
+          </section>
+          <section class="panel review-panel" aria-labelledby="review-title"><div class="status-label">Personal review</div><h3 id="review-title">个性化复习清单</h3><p>根据错题、未完成模块与安全薄弱项给出复习建议。</p><div id="review-list" data-testid="review-list" class="render-region" data-empty-label="复习建议将在此渲染" style="margin-top:1rem"></div></section>
+        </div>
+        <section class="certificate" aria-labelledby="certificate-title" style="margin-top:1.5rem">
+          <div class="certificate-kicker">Certificate of completion</div>
+          <h3 id="certificate-title">AI Agent 知识航图</h3>
+          <p>达到结业门槛后，此证书将证明学习者完成双轨课程，并理解模型、Agent、工具、记忆、循环与安全护栏的基本边界。</p>
+          <div class="certificate-name-preview" data-certificate-preview>学习者</div>
+          <p>核实基准日：2026-08-22</p>
+          <p id="certificate-status" role="status">结业门槛将在课程加载后计算。</p>
+          <div id="certificate-requirements" class="certificate-requirements" aria-label="结业必修项"></div>
+          <div class="certificate-controls">
+            <label class="field"><span class="field-label">证书姓名（默认不保存）</span><input class="input" type="text" data-testid="certificate-name" autocomplete="off" placeholder="选填"></label>
+            <label class="option-row"><input type="checkbox" name="save-certificate-name"><span>仅保存在此浏览器</span></label>
+            <button class="button button-primary" type="button" data-testid="certificate-print">打印证书</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="course-section" id="learning" aria-labelledby="learning-title">
+        <div class="section-head">
+          <div class="section-index">13 · Further Learning</div>
+          <h2 id="learning-title">拓展学习</h2>
+          <p>从官方课程、YouTube 与 Bilibili 中按平台、程度、语言和关键词筛选下一站。链接已于 2026-08-22 核实，并按季度复核；可用性、字幕与价格可能变化，请以打开后的课程页面为准。</p>
+        </div>
+        <div class="toolbar" aria-label="拓展学习筛选器">
+          <label class="field"><span class="field-label">平台</span><select id="learning-platform-filter" data-testid="learning-platform-filter"><option value="">全部平台</option><option value="官方课程">官方课程</option><option value="YouTube">YouTube</option><option value="Bilibili">Bilibili</option></select></label>
+          <label class="field"><span class="field-label">程度</span><select id="learning-level-filter" data-testid="learning-level-filter"><option value="">全部程度</option><option value="入门">入门</option><option value="中级">中级</option><option value="高级">高级</option></select></label>
+          <label class="field"><span class="field-label">语言</span><select id="learning-language-filter" data-testid="learning-language-filter"><option value="">全部语言</option><option value="中文">中文</option><option value="英语">英语</option><option value="多语言">多语言 / 翻译</option></select></label>
+          <label class="field field-grow"><span class="field-label">关键词</span><input class="input" id="learning-keyword-search" data-testid="learning-keyword-search" type="search" autocomplete="off" placeholder="标题、机构、主题或权威说明"></label>
+        </div>
+        <p class="learning-results" id="learning-resource-count" role="status" aria-live="polite"></p>
+        <div id="learning-resource-list" class="render-region learning-resource-list" data-testid="learning-resource-list" data-empty-label="拓展学习资源将在此渲染"></div>
+      </section>
+
+      <section class="course-section" id="sources" aria-labelledby="sources-title">
+        <div class="section-head">
+          <div class="section-index">14 · Sources</div>
+          <h2 id="sources-title">来源、时效与未证实项</h2>
+          <p>每条动态事实都应连接到对应官方来源，注明核实日期；无法从公开材料稳定确认的数字必须明确写为未证实，而不是猜测。</p>
+        </div>
+        <div class="source-meta" aria-label="来源状态图例"><span class="source-tag">官方一手来源</span><span class="source-tag">截至 2026-08-22 核实</span><span class="source-tag">每季度复核一次 / Reviewed quarterly.</span><span class="source-tag">待复核 / 未证实</span></div>
+        <div id="source-list" class="render-region source-ledger" data-testid="source-list" data-empty-label="来源台账将在此渲染"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="bottom-progress" aria-label="移动端底部学习进度"><span>当前航程</span><div class="progress-track" role="progressbar" aria-label="移动端学习进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" data-progress-fill></div></div><strong data-progress-label>0%</strong></div>
+
+  <aside class="reward-toast" id="reward-toast" data-state="idle" role="status" aria-live="polite" aria-atomic="true"><strong>学习光点 +0 XP</strong><span>完成学习动作后，这里会具体说明你刚掌握的内容。</span></aside>
+  <div id="app-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog id="course-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head"><h2 id="modal-title">课程详情</h2><form method="dialog"><button class="icon-button" type="submit" data-testid="modal-close" aria-label="关闭对话框">×</button></form></div>
+    <div class="modal-body" id="modal-content"><p>时间线详情、术语补充或二次确认内容将在此显示。</p></div>
+  </dialog>
+
+  <noscript>
+    <article class="noscript-summary">
+      <h2>关闭 JavaScript 时的课程核心摘要</h2>
+      <p>本课程提供两条视角：零 IT 基础，以及具备软件、系统、网络、云、运维、数据或安全等通用 IT 技术基础但初学生成式 AI 与 AI Agent。知识基准日为 2026-08-22；每季度复核一次 / Reviewed quarterly. <a href="en/index.html" hreflang="en" lang="en">English edition</a></p>
+      <p>这门课最重要的第一条辨析是：模型不等于产品，产品也不等于 Agent。模型（Model）是根据输入进行推理和生成的能力核心，例如大语言模型会依据当前上下文预测后续 Token。聊天产品（Chat product）把模型包装成可对话的界面，可能再加入搜索、文件解析、账号、计费和安全规则。Agent 则进一步拥有可执行的循环：它能围绕目标选择工具、采取动作、观察结果、验证是否完成，再决定继续、记忆或停止。看到一个会聊天的页面，不能因此推断它具备工具执行能力；看到一个能调用工具的产品，也不能推断它可以不受约束地自主完成所有任务。流畅回答不是事实证明，关键结果仍要核实。</p>
+      <p>可以用一个紧凑公式理解 Agent：Agent = Model + Harness + Tools + Memory + Loop + Guardrails。Model 负责推理与生成；Harness 是承载模型、拼装上下文、真正执行工具调用并把结果送回模型的运行壳；Tools 是 API、命令行、浏览器或桌面控制等动作；Memory 通常是模型外部的存储、检索与再次注入，不是模型永久记住一切；Loop 让系统在 Reason、Tool、Act、Observe、Verify、Memory or Stop 之间迭代；Guardrails 用权限、预算、审批、隔离、验证和停止条件限制风险。模型提出一次 Tool Calling 请求，不代表动作已经发生，只有 Harness 在授权范围内执行后，环境才真的改变。</p>
+      <p>Workflow 与 Agent 也应区分。Workflow 的路径大多预先写好，输入沿固定步骤流动，适合稳定、重复、容易验证的任务。Agent 会依据中间观察动态选择下一步，适合路径无法完全预设的问题，但不确定性、成本和风险也更高。现实产品经常混合两者：大框架是固定工作流，其中某些节点允许 Agent 动态决策。所谓自主不等于无边界；可靠的系统必须明确最大调用次数、时间与费用预算、允许使用的工具、可访问的数据范围、成功标准、失败后的停止方式，以及哪些动作必须交给人批准。</p>
+      <p>订阅不等于 API。面向个人的聊天会员、Coding Plan 或 Token Plan，通常只允许在指定聊天界面或兼容开发工具中交互使用；它的 Key 即使长得像 API Key，也可能受工具名单、并发、五小时窗口、周或月额度以及公平使用条款限制。生产 API 则常按请求或 Token 独立计费，有不同服务承诺、并发限制和数据条款。一次用户 Prompt 还可能由 Agent 放大成多次模型调用，所以不能用表面上的一次操作估算真实消耗。任何公开价格、限额和产品能力都会变化，本页以 2026-08-22 为核实基准，真实账单与可用额度必须回到官方控制台确认。</p>
+      <p>Plugin、MCP、Skill 与 Tool 处于不同层级。Plugin 常是某个产品的扩展包；MCP 是让客户端与外部能力交换工具、资源和提示描述的连接协议；Agent Skill 是可移植的操作说明和配套资源；Tool 才是 Harness 实际能够调用的动作。API 通常最稳定、权限最容易收窄；CLI 适合可审计的命令任务；Browser DOM 或 CDP 用于必须经过网页界面的场景；Desktop Accessibility 或 Vision 能看到和操作更大范围，应放在最后选择。能用更窄的通道完成，就不应为了“像人一样操作”而升级到整台电脑的控制权。</p>
+      <p>对普通个人默认推荐 Hermes 是条件化结论，不是宣称 Hermes 在所有方面全面优于 OpenClaw。这个建议成立的条件通常是：学习者愿意从明确命令和逐步配置开始，希望看懂模型、工具、记忆与审批之间的关系，并把浏览器或电脑控制放到后期。在生态偏好、现有部署、团队协作、特定连接器或维护目标不同的情况下，OpenClaw 或其他方案完全可能更合适。选择时应比较同类任务下的安装复杂度、权限面、可观察性、维护成本、平台兼容性和失败恢复，而不是根据热度或绝对化口号决定。</p>
+      <p>安全上的默认路线是最小权限。先用只读、沙盘、dry-run 或 diff 查看将要发生的变化；重要文件先备份，并确认 rollback 路径；写入、发送、购买、删除、发布和账户操作要设置明确审批。浏览器应优先使用隔离会话，连接已有登录态必须获得显式授权。API Key、OAuth Token、Cookie、密码和恢复码只放入合适的秘密存储，不复制到聊天、网页提示或普通日志。来自网页、邮件、文件和工具输出的指令都属于不可信输入，不能让它们改变既定目标或扩大权限。发生重复失败时应停止、记录证据并请人检查，而不是无限重试；高影响结果始终由人承担最终复核责任。</p>
+    </article>
+  </noscript>
+
+  <script src="course_data.js"></script>
+  <script src="course_logic.js"></script>
+</body>
+</html>

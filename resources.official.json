@@ -1,0 +1,263 @@
+{
+  "verified_at": "2026-08-22",
+  "items": [
+    {
+      "name_zh": "OpenAI Academy",
+      "name_en": "OpenAI Academy",
+      "provider": "OpenAI",
+      "language": "English",
+      "level": "Beginner to intermediate",
+      "topics": "AI literacy, prompting, data analysis, workflow automation, responsible use",
+      "url": "https://academy.openai.com/",
+      "free": "Free public learning hub; regional access may vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "构建 AI Agents 学习路径",
+      "name_en": "Building Agents",
+      "provider": "OpenAI Developers",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Agent architecture, tools, guardrails, orchestration, evaluation",
+      "url": "https://developers.openai.com/tracks/building-agents",
+      "free": "Free documentation track",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "构建 AI Agents 实用指南",
+      "name_en": "A Practical Guide to Building AI Agents",
+      "provider": "OpenAI",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Agent design, tools, instructions, guardrails, deployment considerations",
+      "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/",
+      "free": "Free guide",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Claude Academy",
+      "name_en": "Claude Academy",
+      "provider": "Anthropic",
+      "language": "English",
+      "level": "Beginner to advanced",
+      "topics": "AI fluency, Claude API, MCP, Claude Code, use cases",
+      "url": "https://academy.claude.com/",
+      "free": "Free courses; account may be required",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "模型上下文协议导论",
+      "name_en": "Introduction to Model Context Protocol",
+      "provider": "Anthropic",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "MCP clients, servers, tools, resources, prompts, modular integrations",
+      "url": "https://anthropic.skilljar.com/introduction-to-model-context-protocol",
+      "free": "Free course; account may be required",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "使用 Claude API 构建应用",
+      "name_en": "Building with the Claude API",
+      "provider": "Anthropic",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Claude API, streaming, tool use, prompt caching, application lifecycle",
+      "url": "https://anthropic.skilljar.com/claude-with-the-anthropic-api",
+      "free": "Free course; account may be required",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Claude Code 实战",
+      "name_en": "Claude Code in Action",
+      "provider": "Anthropic",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Coding agents, long-running tasks, steering, verification, safe workflows",
+      "url": "https://anthropic.skilljar.com/claude-code-in-action",
+      "free": "Free course; account may be required",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "生成式 AI 导论",
+      "name_en": "Introduction to Generative AI",
+      "provider": "Google Cloud Skills Boost",
+      "language": "English; subtitles/localization may vary",
+      "level": "Beginner",
+      "topics": "Generative AI concepts, model types, applications, Google tools",
+      "url": "https://www.skills.google/course_templates/536",
+      "free": "Course access may require a Google account; lab policies vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "大语言模型导论",
+      "name_en": "Introduction to Large Language Models",
+      "provider": "Google Cloud Skills Boost",
+      "language": "English; subtitles/localization may vary",
+      "level": "Beginner",
+      "topics": "LLM fundamentals, prompting, tuning, Google AI development",
+      "url": "https://www.skills.google/course_templates/539",
+      "free": "Course access may require a Google account; lab policies vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "生成式 AI 与 Agents 基础",
+      "name_en": "Introduction to Generative AI and Agents",
+      "provider": "Microsoft Learn",
+      "language": "English and Microsoft Learn localizations",
+      "level": "Beginner",
+      "topics": "LLMs, prompts, generative AI, AI agents, responsible AI",
+      "url": "https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/",
+      "free": "Free Microsoft Learn module",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "在 Azure 上开始构建 AI 应用与 Agents",
+      "name_en": "Get Started with AI Applications and Agents on Azure",
+      "provider": "Microsoft Learn",
+      "language": "English and Microsoft Learn localizations",
+      "level": "Beginner to intermediate",
+      "topics": "Generative AI apps, agents, Microsoft Foundry, text and knowledge workflows",
+      "url": "https://learn.microsoft.com/en-us/training/paths/get-started-ai-apps-agents/",
+      "free": "Free Microsoft Learn path",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "AI Agents 入门课程",
+      "name_en": "AI Agents for Beginners",
+      "provider": "Microsoft Cloud Advocates",
+      "language": "English with community translations",
+      "level": "Beginner to intermediate",
+      "topics": "Agent design patterns, tool use, orchestration, memory, multi-agent systems",
+      "url": "https://github.com/microsoft/ai-agents-for-beginners",
+      "free": "Free open-source curriculum",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "MCP 入门课程",
+      "name_en": "MCP for Beginners",
+      "provider": "Microsoft",
+      "language": "English with community translations",
+      "level": "Beginner to intermediate",
+      "topics": "MCP architecture, clients, servers, tools, security, best practices",
+      "url": "https://github.com/microsoft/mcp-for-beginners/",
+      "free": "Free open-source curriculum",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "AWS 生成式 AI 学习中心",
+      "name_en": "AWS Skill Builder: Generative AI",
+      "provider": "AWS Skill Builder",
+      "language": "Multiple languages depending on course",
+      "level": "Beginner to advanced",
+      "topics": "Generative AI foundations, Amazon Bedrock, development, operations",
+      "url": "https://skillbuilder.aws/generative-ai",
+      "free": "Mix of free and subscription learning resources",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "生成式 AI 与 LLM 学习路径",
+      "name_en": "Generative AI and LLM Learning Paths",
+      "provider": "NVIDIA",
+      "language": "English",
+      "level": "Beginner to advanced",
+      "topics": "Generative AI, LLM development, deployment, RAG, accelerated computing",
+      "url": "https://www.nvidia.com/en-us/learn/learning-path/generative-ai-llm/",
+      "free": "Mix of free and paid NVIDIA training",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "NVIDIA AI 学习基础资源",
+      "name_en": "AI Learning Essentials",
+      "provider": "NVIDIA",
+      "language": "English",
+      "level": "Beginner to intermediate",
+      "topics": "AI foundations, generative AI concepts, hands-on learning, certifications",
+      "url": "https://www.nvidia.com/en-us/learn/ai-learning-essentials/",
+      "free": "Mix of free and paid resources",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "IBM SkillsBuild 成人学习者 AI 与技术课程",
+      "name_en": "IBM SkillsBuild for Adult Learners",
+      "provider": "IBM SkillsBuild",
+      "language": "Multiple languages depending on course",
+      "level": "Beginner",
+      "topics": "AI fundamentals, technology skills, responsible use, career skills",
+      "url": "https://skillsbuild.org/adult-learners",
+      "free": "Free online learning and credentials",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Hugging Face AI Agents 课程",
+      "name_en": "Hugging Face Agents Course",
+      "provider": "Hugging Face",
+      "language": "English with community translations",
+      "level": "Beginner to intermediate",
+      "topics": "Agents, tools, workflows, frameworks, evaluation, hands-on assignments",
+      "url": "https://huggingface.co/learn/agents-course/en/unit0/introduction",
+      "free": "Free open course",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Hugging Face MCP 课程",
+      "name_en": "Hugging Face MCP Course",
+      "provider": "Hugging Face",
+      "language": "English with community translations",
+      "level": "Beginner to intermediate",
+      "topics": "MCP theory, clients, servers, tools, SDKs, applications",
+      "url": "https://huggingface.co/learn/mcp-course/en/unit0/introduction",
+      "free": "Free open course",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "面向开发者的 ChatGPT Prompt Engineering",
+      "name_en": "ChatGPT Prompt Engineering for Developers",
+      "provider": "DeepLearning.AI / OpenAI",
+      "language": "English; subtitles may vary",
+      "level": "Beginner",
+      "topics": "Prompting principles, iterative prompt development, application patterns",
+      "url": "https://www.deeplearning.ai/courses/chatgpt-prompt-eng",
+      "free": "Course access may require an account; certificate/membership policies vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Agentic AI",
+      "name_en": "Agentic AI",
+      "provider": "DeepLearning.AI / Andrew Ng",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Agentic workflows, reflection, tool use, planning, multi-agent patterns",
+      "url": "https://www.deeplearning.ai/courses/agentic-ai",
+      "free": "Enrollment and certificate policies may vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "使用 LangGraph 构建 AI Agents",
+      "name_en": "AI Agents in LangGraph",
+      "provider": "DeepLearning.AI / LangChain",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Agent state, persistence, human-in-the-loop, LangGraph workflows",
+      "url": "https://www.deeplearning.ai/courses/ai-agents-in-langgraph",
+      "free": "Course access may require an account; certificate/membership policies vary",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "使用 crewAI 构建多 Agent 系统",
+      "name_en": "Multi AI Agent Systems with crewAI",
+      "provider": "DeepLearning.AI / crewAI",
+      "language": "English",
+      "level": "Intermediate",
+      "topics": "Role-based agents, memory, tools, collaboration, multi-step tasks",
+      "url": "https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai",
+      "free": "Course access may require an account; certificate/membership policies vary",
+      "accessed": "2026-08-22"
+    }
+  ],
+  "warnings": [
+    "Course access, regional availability, account requirements, certificates, and pricing can change after the verification date.",
+    "Google Cloud Skills Boost pages may return HTTP 403 to automated clients while remaining available in a normal browser.",
+    "Vendor learning hubs may mix free and paid resources; check the current course page before enrolling."
+  ]
+}

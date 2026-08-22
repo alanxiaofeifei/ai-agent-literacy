@@ -1,0 +1,129 @@
+{
+  "items": [
+    {
+      "name_zh": "Transformer：大语言模型背后的技术",
+      "name_en": "Transformers, the Tech Behind LLMs | Deep Learning Chapter 5",
+      "creator": "3Blue1Brown",
+      "language": "English",
+      "format": "Visual explainer · 27:14",
+      "level": "Beginner",
+      "topics": "LLM foundations, Transformers, embeddings, neural networks, text generation",
+      "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+      "authority": "Published by the verified 3Blue1Brown channel, known for rigorous mathematical visualizations; YouTube metadata was read back directly.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "逐步理解 Transformer 中的注意力机制",
+      "name_en": "Attention in Transformers, Step by Step | Deep Learning Chapter 6",
+      "creator": "3Blue1Brown",
+      "language": "English",
+      "format": "Visual explainer · 26:09",
+      "level": "Beginner to intermediate",
+      "topics": "Attention, Q/K/V vectors, softmax, multi-head attention, Transformer internals",
+      "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc",
+      "authority": "Published by the verified 3Blue1Brown channel; it is a first-party visual explanation, not a repost.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "大语言模型导论（一小时演讲）",
+      "name_en": "Intro to Large Language Models",
+      "creator": "Andrej Karpathy",
+      "language": "English",
+      "format": "Technical talk · 59:48",
+      "level": "Beginner to intermediate",
+      "topics": "LLM training, inference, capabilities, limitations, security, model ecosystem",
+      "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+      "authority": "Published on Andrej Karpathy's own channel. Karpathy is a widely recognized AI researcher and educator; metadata was read back directly.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "像 ChatGPT 一样的大语言模型深度解析",
+      "name_en": "Deep Dive into LLMs like ChatGPT",
+      "creator": "Andrej Karpathy",
+      "language": "English",
+      "format": "Long-form technical course · 3:31:23",
+      "level": "Intermediate",
+      "topics": "Tokenization, pretraining, post-training, evaluation, inference, multimodality, security",
+      "url": "https://www.youtube.com/watch?v=7xTGNNLPyMI",
+      "authority": "Published on Andrej Karpathy's own channel and presented as a long-form first-party technical course.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "从零用代码构建 GPT",
+      "name_en": "Let's Build GPT: From Scratch, in Code, Spelled Out",
+      "creator": "Andrej Karpathy",
+      "language": "English",
+      "format": "Coding course · 1:56:20",
+      "level": "Intermediate",
+      "topics": "Transformer implementation, self-attention, language modeling, PyTorch, training",
+      "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY",
+      "authority": "Published on Andrej Karpathy's own channel; it implements a small GPT model step by step rather than only describing it.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "我如何使用大语言模型",
+      "name_en": "How I Use LLMs",
+      "creator": "Andrej Karpathy",
+      "language": "English",
+      "format": "Practical lecture · 2:11:12",
+      "level": "Beginner to intermediate",
+      "topics": "Practical LLM use, prompting, coding, multimodal workflows, limitations, safety",
+      "url": "https://www.youtube.com/watch?v=EWvNQjAaOHw",
+      "authority": "Published on Andrej Karpathy's own channel; it demonstrates practical workflows while discussing limits and failure modes.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "AI 红队测试 101 完整课程",
+      "name_en": "AI Red Teaming 101 – Full Course (Episodes 1-10)",
+      "creator": "Microsoft Developer",
+      "language": "English",
+      "format": "10-episode security course · 1:17:25",
+      "level": "Beginner to intermediate",
+      "topics": "AI security, red teaming, adversarial testing, prompt injection, responsible AI",
+      "url": "https://www.youtube.com/watch?v=DwFVhFdD2fs",
+      "authority": "Published by the verified Microsoft Developer channel; direct YouTube metadata confirmed the full-course title and duration.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "MCP 入门完整课程（第1至11课）",
+      "name_en": "Full Course (Lessons 1-11) MCP for Beginners",
+      "creator": "Microsoft Developer",
+      "language": "English",
+      "format": "11-lesson course · 50:46",
+      "level": "Beginner to intermediate",
+      "topics": "MCP clients, servers, tools, resources, prompts, security, agent integration",
+      "url": "https://www.youtube.com/watch?v=VfZlglOWWZw",
+      "authority": "Published by the verified Microsoft Developer channel and paired with Microsoft's open MCP curriculum.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "Hugging Face Agents 课程介绍与答疑",
+      "name_en": "Welcome to the Agents Course! Introduction and Q&A",
+      "creator": "Hugging Face",
+      "language": "English",
+      "format": "Course orientation and Q&A · 58:08",
+      "level": "Beginner",
+      "topics": "AI Agents course structure, tools, frameworks, assignments, community learning",
+      "url": "https://www.youtube.com/watch?v=iLVyYDbdSmM",
+      "authority": "Published on the Hugging Face channel as the first-party orientation for its open Agents Course.",
+      "accessed": "2026-08-22"
+    },
+    {
+      "name_zh": "OpenAI Agent Builder 导论",
+      "name_en": "Intro to Agent Builder",
+      "creator": "OpenAI",
+      "language": "English",
+      "format": "Official product introduction · 5:29",
+      "level": "Beginner",
+      "topics": "Agent Builder, agent workflows, tools, deployment, OpenAI platform",
+      "url": "https://www.youtube.com/watch?v=44eFf-tRiSg",
+      "authority": "Published by the verified OpenAI channel; it is a first-party product introduction, not an independent review.",
+      "accessed": "2026-08-22"
+    }
+  ],
+  "warnings": [
+    "All 10 URLs were checked with direct YouTube metadata on 2026-08-22 and were public at that time.",
+    "Chinese titles are editorial translations for the bilingual site, not necessarily uploader-provided titles.",
+    "Subtitle availability, titles, chapter markers, and regional access can change without the video URL changing."
+  ]
+}
