@@ -8,8 +8,10 @@ An open-source, bilingual, offline-capable interactive course about generative A
 
 ## Audience
 
-- **Learners with no IT background** start with plain-language explanations, everyday analogies, and safety boundaries.
-- **Learners with general IT foundations but limited AI knowledge** use familiar software, systems, networking, cloud, data, security, automation, and operations concepts to understand AI Agents.
+- **Learners with no IT background** start with plain-language explanations, everyday analogies, and safety boundaries; their route prioritizes model basics, hallucinations, agent loops, tools, memory, and prompt injection.
+- **Learners with general IT foundations but limited AI knowledge** use familiar software, systems, networking, cloud, data, security, automation, and operations concepts; their route prioritizes APIs, tool calling, workflows vs. agents, harnesses, MCP, context engineering, evals, and observability.
+
+The routes do more than rename the same page. Switching changes the four-step roadmap, default explanation layers, concept priority order, Hermes module order, and timeline perspective. Both routes still retain all 64 concepts and all 25 Hermes modules so learners can cross-reference the complete atlas.
 
 ## Course size
 

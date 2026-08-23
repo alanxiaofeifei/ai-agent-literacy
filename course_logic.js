@@ -13,6 +13,38 @@
     wrongAnswers: [],
     reviewItems: []
   });
+  const AUDIENCE_ROUTES = Object.freeze({
+    beginner: Object.freeze({
+      title: "从会聊天到安全使用 Agent",
+      explanation: "先分清模型、聊天产品与 Agent，再用白话建立足够的原理，最后在明确边界内动手。",
+      steps: Object.freeze([
+        "分清生成式模型、聊天产品与会调用工具的 Agent",
+        "用白话理解大语言模型、生成、幻觉与上下文",
+        "看懂工具调用、记忆与 Agent Loop 如何配合",
+        "跟着 Hermes 指引完成首次运行、控制与安全练习"
+      ]),
+      defaultView: "默认展示：概念卡展开白话解释与生活类比；概念和 Hermes 模块按本路线优先级排列，其余内容仍全部保留。",
+      startLabel: "从 AI 基础开始",
+      startHref: "#foundations",
+      concepts: Object.freeze(["generative-ai", "large-language-model", "ai-agent", "hallucination", "tool-calling", "memory", "agent-loop", "prompt-injection"]),
+      hermes: Object.freeze(["first-run", "setup", "model", "tools", "prompting", "slash-control", "memory", "security"])
+    }),
+    engineer: Object.freeze({
+      title: "从模型接口到可控 Agent 运行时",
+      explanation: "沿着接口、运行时与治理边界理解 Agent，重点放在可验证、可观测、可停止的工程控制。",
+      steps: Object.freeze([
+        "从 API、Tool Calling 与 Workflow / Agent 边界切入",
+        "拆解 Harness、Agent Loop 与上下文工程",
+        "连接 MCP、Skills 与分层 Memory",
+        "用 Sandbox、Evals、可观测性与部署边界收口"
+      ]),
+      defaultView: "默认展示：概念卡展开专业定义与 IT 技术类比；工程概念和 Hermes 控制模块提前，其余内容仍按原顺序保留。",
+      startLabel: "从接口与 Agent 概念开始",
+      startHref: "#concepts",
+      concepts: Object.freeze(["api", "tool-calling", "workflow", "ai-agent", "harness", "agent-loop", "context-engineering", "mcp", "agent-skills", "memory", "sandbox", "evaluation-evals", "observability"]),
+      hermes: Object.freeze(["doctor-status", "tools", "mcp", "profiles", "browser", "computer-use", "delegation", "verification"])
+    })
+  });
 
   let state;
   let storageAvailable = false;
@@ -153,13 +185,13 @@
     announce(`${points > 0 ? `获得 ${points} XP。` : ""}${message}`);
   }
 
-  function earn(id, points, message) {
+  function earn(id, points, message, showReward = true) {
     if (state.earnedIds.includes(id)) return false;
     state.earnedIds.push(id);
     state.xp += points;
     persist();
     updateRewards();
-    showToast(points, message);
+    if (showReward) showToast(points, message);
     return true;
   }
 
@@ -300,17 +332,48 @@
     }
   }
 
-  function setAudience(audience, reward = true) {
+  function prioritize(items, ids) {
+    const rank = new Map(ids.map((id, index) => [id, index]));
+    return items.map((item, index) => ({ item, index })).sort((a, b) =>
+      (rank.get(a.item.id) ?? Number.MAX_SAFE_INTEGER) - (rank.get(b.item.id) ?? Number.MAX_SAFE_INTEGER) || a.index - b.index
+    ).map(entry => entry.item);
+  }
+
+  function renderAudienceRoute(focusGuide = false) {
+    const profile = AUDIENCE_ROUTES[state.audience];
+    $$('.route-card[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
+    const guide = $("#audience-route-guide");
+    if (!guide) return;
+    guide.dataset.testid = "audience-route-summary";
+    guide.dataset.audience = state.audience;
+    guide.setAttribute("aria-label", profile.title);
+    const steps = element("ol");
+    profile.steps.forEach(step => steps.append(element("li", { text: step })));
+    const footer = element("div", { className: "route-guide-footer" }, [
+      element("p", { className: "route-guide-default", text: profile.defaultView }),
+      element("a", { className: "button button-primary", href: profile.startHref, text: profile.startLabel })
+    ]);
+    guide.replaceChildren(element("h3", { text: profile.title }), element("p", { text: profile.explanation }), steps, footer);
+    if (focusGuide) focusSoon('[data-testid="audience-route-summary"]');
+  }
+
+  function setAudience(audience, reward = true, userTriggered = true) {
     state.audience = audience === "engineer" ? "engineer" : "beginner";
     complete(`audience:${state.audience}`);
-    $$('[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
     document.documentElement.dataset.audience = state.audience;
+    renderAudienceRoute(userTriggered);
     renderTimeline();
     renderConcepts();
     renderHermes();
     persist();
     updateRewards();
-    if (reward) earn(`audience:${state.audience}`, 5, state.audience === "engineer" ? "已切换到 IT 技术视角。" : "已切换到零基础视角。");
+    if (reward) earn(`audience:${state.audience}`, 5, state.audience === "engineer" ? "已切换到 IT 技术视角。" : "已切换到零基础视角。", false);
+    if (userTriggered) {
+      const toast = $("#reward-toast");
+      if (toast) toast.dataset.state = "idle";
+      window.clearTimeout(toastTimer);
+      announce(`${AUDIENCE_ROUTES[state.audience].title}。推荐内容与学习顺序已更新。`);
+    }
   }
 
   function setTheme(theme) {
@@ -345,7 +408,7 @@
       appendTextBlock(article, "div", `${item.date} · ${item.phase}`, "status-label");
       appendTextBlock(article, "h3", item.title);
       appendTextBlock(article, "p", item.what);
-      appendTextBlock(article, "p", state.audience === "engineer" ? item.engineer : item.plain);
+      appendTextBlock(article, "p", `${state.audience === "engineer" ? "通用 IT 视角" : "零基础视角"}：${state.audience === "engineer" ? item.engineer : item.plain}`, "audience-perspective");
       const controls = element("div", { className: "loop-controls" }, [
         button("查看详情与来源", "timeline-detail", item.id),
         button(state.completed.includes(`timeline:${item.id}`) ? "✓ 已学会" : "标记学会", "timeline-learn", item.id, "button button-primary")
@@ -387,14 +450,18 @@
     const mount = $("#concept-list");
     if (!mount) return;
     const query = conceptQuery.trim().toLocaleLowerCase();
-    const items = asArray(DATA.concepts).filter(item => {
+    const profile = AUDIENCE_ROUTES[state.audience];
+    const recommended = new Set(profile.concepts);
+    const items = prioritize(asArray(DATA.concepts).filter(item => {
       const matchesCategory = !conceptCategory || item.category === conceptCategory;
       const haystack = [item.cn, item.en, item.oneLine, item.plain, item.professional].join(" ").toLocaleLowerCase();
       return matchesCategory && (!query || haystack.includes(query));
-    });
+    }), profile.concepts);
     mount.replaceChildren(...items.map(item => {
-      const article = element("article", { className: "panel", dataset: { conceptId: item.id } });
+      const isRecommended = recommended.has(item.id);
+      const article = element("article", { className: "panel", dataset: { conceptId: item.id, recommended: String(isRecommended) } });
       appendTextBlock(article, "div", item.category, "status-label");
+      if (isRecommended) appendTextBlock(article, "div", "本路线优先", "priority-badge");
       appendTextBlock(article, "h3", `${item.cn} · ${item.en}`);
       appendTextBlock(article, "p", item.oneLine);
       const views = [
@@ -567,9 +634,14 @@
   function renderHermes() {
     const mount = $("#hermes-modules");
     if (!mount) return;
-    mount.replaceChildren(...asArray(DATA.hermesModules).map(module => {
-      const details = element("details", { className: "panel", dataset: { moduleId: module.id } });
-      details.append(element("summary", { text: module.title }));
+    const profile = AUDIENCE_ROUTES[state.audience];
+    const recommended = new Set(profile.hermes);
+    mount.replaceChildren(...prioritize(asArray(DATA.hermesModules), profile.hermes).map(module => {
+      const isRecommended = recommended.has(module.id);
+      const details = element("details", { className: "panel", dataset: { moduleId: module.id, recommended: String(isRecommended) } });
+      const summary = element("summary", {}, [module.title]);
+      if (isRecommended) summary.append(element("span", { className: "priority-badge", text: "本路线优先" }));
+      details.append(summary);
       appendTextBlock(details, "p", state.audience === "engineer" ? module.engineer : module.plain);
       const steps = element("ol");
       asArray(module.steps).forEach(step => steps.append(element("li", { text: step })));
@@ -1002,7 +1074,7 @@
   function renderAll() {
     setTheme(state.theme);
     document.documentElement.dataset.audience = state.audience;
-    $$('[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
+    renderAudienceRoute(false);
     renderTimelineFilters();
     renderTimeline();
     renderConceptCategoryOptions();

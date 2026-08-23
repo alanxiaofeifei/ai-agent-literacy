@@ -13,6 +13,38 @@
     wrongAnswers: [],
     reviewItems: []
   });
+  const AUDIENCE_ROUTES = Object.freeze({
+    beginner: Object.freeze({
+      title: "From Chatting with AI to Running an Agent Safely",
+      explanation: "First separate models, chat products, and Agents. Then build a plain-language mental model before taking guided action inside clear safety boundaries.",
+      steps: Object.freeze([
+        "Tell a generative model, a chat product, and a tool-using Agent apart",
+        "Build an intuitive model of LLMs, generation, hallucinations, and context",
+        "See how tool calling, memory, and the Agent Loop work together",
+        "Complete a guided Hermes first run, control check, and safety practice"
+      ]),
+      defaultView: "Shown by default: concept cards open plain-language explanations and everyday analogies. Route-priority concepts and Hermes modules come first; every other item remains available.",
+      startLabel: "Start with AI foundations",
+      startHref: "#foundations",
+      concepts: Object.freeze(["generative-ai", "large-language-model", "ai-agent", "hallucination", "tool-calling", "memory", "agent-loop", "prompt-injection"]),
+      hermes: Object.freeze(["first-run", "setup", "model", "tools", "prompting", "slash-control", "memory", "security"])
+    }),
+    engineer: Object.freeze({
+      title: "From Model APIs to a Governed Agent Runtime",
+      explanation: "Approach Agents through interfaces, runtime behavior, and governance, with emphasis on systems that can be inspected, evaluated, and stopped.",
+      steps: Object.freeze([
+        "Begin with APIs, tool calling, and the Workflow-versus-Agent boundary",
+        "Dissect the harness, Agent Loop, and context engineering",
+        "Connect MCP, Skills, and layered memory",
+        "Close the loop with sandboxes, evals, observability, and deployment boundaries"
+      ]),
+      defaultView: "Shown by default: concept cards open professional definitions and IT analogies. Engineering concepts and Hermes control modules move forward; everything else keeps its original relative order.",
+      startLabel: "Start with interfaces and Agents",
+      startHref: "#concepts",
+      concepts: Object.freeze(["api", "tool-calling", "workflow", "ai-agent", "harness", "agent-loop", "context-engineering", "mcp", "agent-skills", "memory", "sandbox", "evaluation-evals", "observability"]),
+      hermes: Object.freeze(["doctor-status", "tools", "mcp", "profiles", "browser", "computer-use", "delegation", "verification"])
+    })
+  });
 
   let state;
   let storageAvailable = false;
@@ -153,13 +185,13 @@
     announce(`${points > 0 ? `Earned ${points} XP. ` : ""}${message}`);
   }
 
-  function earn(id, points, message) {
+  function earn(id, points, message, showReward = true) {
     if (state.earnedIds.includes(id)) return false;
     state.earnedIds.push(id);
     state.xp += points;
     persist();
     updateRewards();
-    showToast(points, message);
+    if (showReward) showToast(points, message);
     return true;
   }
 
@@ -300,17 +332,48 @@
     }
   }
 
-  function setAudience(audience, reward = true) {
+  function prioritize(items, ids) {
+    const rank = new Map(ids.map((id, index) => [id, index]));
+    return items.map((item, index) => ({ item, index })).sort((a, b) =>
+      (rank.get(a.item.id) ?? Number.MAX_SAFE_INTEGER) - (rank.get(b.item.id) ?? Number.MAX_SAFE_INTEGER) || a.index - b.index
+    ).map(entry => entry.item);
+  }
+
+  function renderAudienceRoute(focusGuide = false) {
+    const profile = AUDIENCE_ROUTES[state.audience];
+    $$('.route-card[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
+    const guide = $("#audience-route-guide");
+    if (!guide) return;
+    guide.dataset.testid = "audience-route-summary";
+    guide.dataset.audience = state.audience;
+    guide.setAttribute("aria-label", profile.title);
+    const steps = element("ol");
+    profile.steps.forEach(step => steps.append(element("li", { text: step })));
+    const footer = element("div", { className: "route-guide-footer" }, [
+      element("p", { className: "route-guide-default", text: profile.defaultView }),
+      element("a", { className: "button button-primary", href: profile.startHref, text: profile.startLabel })
+    ]);
+    guide.replaceChildren(element("h3", { text: profile.title }), element("p", { text: profile.explanation }), steps, footer);
+    if (focusGuide) focusSoon('[data-testid="audience-route-summary"]');
+  }
+
+  function setAudience(audience, reward = true, userTriggered = true) {
     state.audience = audience === "engineer" ? "engineer" : "beginner";
     complete(`audience:${state.audience}`);
-    $$('[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
     document.documentElement.dataset.audience = state.audience;
+    renderAudienceRoute(userTriggered);
     renderTimeline();
     renderConcepts();
     renderHermes();
     persist();
     updateRewards();
-    if (reward) earn(`audience:${state.audience}`, 5, state.audience === "engineer" ? "Switched to the IT perspective." : "Switched to the No IT background perspective.");
+    if (reward) earn(`audience:${state.audience}`, 5, state.audience === "engineer" ? "Switched to the IT perspective." : "Switched to the No IT background perspective.", false);
+    if (userTriggered) {
+      const toast = $("#reward-toast");
+      if (toast) toast.dataset.state = "idle";
+      window.clearTimeout(toastTimer);
+      announce(`${AUDIENCE_ROUTES[state.audience].title}. Recommendations and learning order updated.`);
+    }
   }
 
   function setTheme(theme) {
@@ -345,7 +408,7 @@
       appendTextBlock(article, "div", `${item.date} · ${item.phase}`, "status-label");
       appendTextBlock(article, "h3", item.title);
       appendTextBlock(article, "p", item.what);
-      appendTextBlock(article, "p", state.audience === "engineer" ? item.engineer : item.plain);
+      appendTextBlock(article, "p", `${state.audience === "engineer" ? "General IT perspective" : "No IT background perspective"}: ${state.audience === "engineer" ? item.engineer : item.plain}`, "audience-perspective");
       const controls = element("div", { className: "loop-controls" }, [
         button("View details and sources", "timeline-detail", item.id),
         button(state.completed.includes(`timeline:${item.id}`) ? "✓ Learned" : "Mark as learned", "timeline-learn", item.id, "button button-primary")
@@ -387,14 +450,18 @@
     const mount = $("#concept-list");
     if (!mount) return;
     const query = conceptQuery.trim().toLocaleLowerCase();
-    const items = asArray(DATA.concepts).filter(item => {
+    const profile = AUDIENCE_ROUTES[state.audience];
+    const recommended = new Set(profile.concepts);
+    const items = prioritize(asArray(DATA.concepts).filter(item => {
       const matchesCategory = !conceptCategory || item.category === conceptCategory;
       const haystack = [item.cn, item.en, item.oneLine, item.plain, item.professional].join(" ").toLocaleLowerCase();
       return matchesCategory && (!query || haystack.includes(query));
-    });
+    }), profile.concepts);
     mount.replaceChildren(...items.map(item => {
-      const article = element("article", { className: "panel", dataset: { conceptId: item.id } });
+      const isRecommended = recommended.has(item.id);
+      const article = element("article", { className: "panel", dataset: { conceptId: item.id, recommended: String(isRecommended) } });
       appendTextBlock(article, "div", item.category, "status-label");
+      if (isRecommended) appendTextBlock(article, "div", "Route priority", "priority-badge");
       appendTextBlock(article, "h3", `${item.cn} · ${item.en}`);
       appendTextBlock(article, "p", item.oneLine);
       const views = [
@@ -567,9 +634,14 @@
   function renderHermes() {
     const mount = $("#hermes-modules");
     if (!mount) return;
-    mount.replaceChildren(...asArray(DATA.hermesModules).map(module => {
-      const details = element("details", { className: "panel", dataset: { moduleId: module.id } });
-      details.append(element("summary", { text: module.title }));
+    const profile = AUDIENCE_ROUTES[state.audience];
+    const recommended = new Set(profile.hermes);
+    mount.replaceChildren(...prioritize(asArray(DATA.hermesModules), profile.hermes).map(module => {
+      const isRecommended = recommended.has(module.id);
+      const details = element("details", { className: "panel", dataset: { moduleId: module.id, recommended: String(isRecommended) } });
+      const summary = element("summary", {}, [module.title]);
+      if (isRecommended) summary.append(element("span", { className: "priority-badge", text: "Route priority" }));
+      details.append(summary);
       appendTextBlock(details, "p", state.audience === "engineer" ? module.engineer : module.plain);
       const steps = element("ol");
       asArray(module.steps).forEach(step => steps.append(element("li", { text: step })));
@@ -1003,7 +1075,7 @@
   function renderAll() {
     setTheme(state.theme);
     document.documentElement.dataset.audience = state.audience;
-    $$('[data-testid^="audience-"]').forEach(node => node.setAttribute("aria-pressed", String(node.dataset.testid === `audience-${state.audience}`)));
+    renderAudienceRoute(false);
     renderTimelineFilters();
     renderTimeline();
     renderConceptCategoryOptions();

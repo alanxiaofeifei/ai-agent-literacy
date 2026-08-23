@@ -310,7 +310,7 @@
 
     .route-card {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
       gap: .9rem;
       width: 100%;
@@ -323,11 +323,37 @@
       text-align: left;
     }
 
-    .route-card:hover, .route-card[aria-pressed="true"] { border-color: var(--gold); background: var(--gold-wash); }
+    .route-card:hover { border-color: var(--gold); background: var(--gold-wash); }
+    .route-card[aria-pressed="true"] { border-color: var(--gold-strong); background: var(--gold-wash); box-shadow: inset 3px 0 0 var(--gold-strong), 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent); }
     .route-code { color: var(--gold); font-family: var(--mono); font-size: .72rem; }
+    .route-copy { min-width: 0; }
     .route-copy strong { display: block; font-family: var(--serif); font-size: 1.12rem; }
-    .route-copy small { display: block; margin-top: .15rem; color: var(--muted); }
+    .route-copy small { display: block; margin-top: .15rem; color: var(--muted); overflow-wrap: anywhere; }
     .route-arrow { color: var(--gold); font-family: var(--mono); }
+    .route-current { display: none; color: var(--gold-strong); font-family: var(--mono); font-size: .7rem; white-space: nowrap; }
+    .route-card[aria-pressed="true"] .route-arrow { display: none; }
+    .route-card[aria-pressed="true"] .route-current { display: inline; }
+
+    .audience-route-guide {
+      min-width: 0;
+      max-width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold-strong);
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--panel-solid) 88%, var(--gold-wash));
+      overflow-wrap: anywhere;
+      outline: none;
+    }
+    .audience-route-guide:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 45%, transparent); }
+    .audience-route-guide h3 { margin: .2rem 0 .45rem; font-family: var(--serif); font-size: 1.25rem; }
+    .audience-route-guide p { margin: .45rem 0; color: var(--muted); }
+    .audience-route-guide ol { display: grid; gap: .35rem; margin: .75rem 0; padding-left: 1.4rem; }
+    .audience-route-guide li::marker { color: var(--gold-strong); font-family: var(--mono); font-weight: 700; }
+    .route-guide-footer { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; }
+    .route-guide-default { flex: 1 1 24rem; }
+    .priority-badge { display: inline-flex; align-items: center; width: fit-content; max-width: 100%; margin: .35rem 0; padding: .22rem .5rem; border: 1px solid var(--gold); border-radius: 999px; background: var(--gold-wash); color: var(--gold-strong); font-family: var(--mono); font-size: .68rem; font-weight: 700; letter-spacing: .04em; }
+    summary .priority-badge { margin: 0 0 0 .55rem; vertical-align: middle; }
 
     .hero-facts { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
     .fact { padding: .45rem .7rem; border-left: 2px solid var(--gold); background: var(--gold-wash); color: var(--muted); font-size: .78rem; }
@@ -593,7 +619,7 @@
 
     @media (min-width: 620px) {
       .route-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .route-panel .nav-kicker { grid-column: 1 / -1; }
+      .route-panel .nav-kicker, .audience-route-guide { grid-column: 1 / -1; }
       .foundation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid-2, .memory-layout, .decision-layout, .reward-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .loop-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -744,11 +770,12 @@
           <div class="route-panel" aria-labelledby="route-title">
             <div class="nav-kicker" id="route-title">选择你的学习视角</div>
             <button class="route-card" type="button" data-testid="audience-beginner" aria-pressed="true">
-              <span class="route-code">A</span><span class="route-copy"><strong>零 IT 基础</strong><small>先结论、白话、生活类比与安全提示</small></span><span class="route-arrow" aria-hidden="true">→</span>
+              <span class="route-code">A</span><span class="route-copy"><strong>零 IT 基础</strong><small>优先模型白话、Agent 基础与引导式安全实操</small></span><span aria-hidden="true"><span class="route-arrow">→</span><span class="route-current">✓ 当前路线</span></span>
             </button>
             <button class="route-card" type="button" data-testid="audience-engineer" aria-pressed="false">
-              <span class="route-code">B</span><span class="route-copy"><strong>通用 IT 技术背景</strong><small>具备技术基础，但初学生成式 AI 与 AI Agent</small></span><span class="route-arrow" aria-hidden="true">→</span>
+              <span class="route-code">B</span><span class="route-copy"><strong>通用 IT 技术背景</strong><small>优先接口、运行时、控制边界与工程验证</small></span><span aria-hidden="true"><span class="route-arrow">→</span><span class="route-current">✓ 当前路线</span></span>
             </button>
+            <div id="audience-route-guide" class="audience-route-guide" tabindex="-1"></div>
           </div>
         </div>
       </section>

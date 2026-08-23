@@ -116,6 +116,12 @@ async def main_async(args):
 
         initial = await cdp.evaluate("window.__COURSE_TEST__.getState()")
         checks["initial_state"] = initial
+        beginner_route = await cdp.evaluate("({summary:Boolean(document.querySelector('[data-testid=audience-route-summary][data-audience=beginner]')),title:document.querySelector('[data-testid=audience-route-summary] h3')?.textContent||'',steps:document.querySelectorAll('[data-testid=audience-route-summary] li').length,concepts:[...document.querySelectorAll('#concept-list article')].slice(0,8).map(x=>x.dataset.conceptId),conceptCount:document.querySelectorAll('#concept-list article').length,recommended:document.querySelectorAll('#concept-list [data-recommended=true]').length,toast:document.querySelector('#reward-toast').dataset.state,active:document.activeElement.id,pressed:[...document.querySelectorAll('.route-card[data-testid^=audience-]')].map(x=>x.getAttribute('aria-pressed')),guidePressed:document.querySelector('[data-testid=audience-route-summary]').hasAttribute('aria-pressed'),hermes:[...document.querySelectorAll('#hermes-modules [data-module-id]')].slice(0,5).map(x=>x.dataset.moduleId),hermesCount:document.querySelectorAll('#hermes-modules [data-module-id]').length})")
+        checks["beginner_route_profile"] = beginner_route
+        assert beginner_route["summary"] and beginner_route["steps"] == 4 and beginner_route["recommended"] == 8
+        assert beginner_route["concepts"] == ["generative-ai", "large-language-model", "ai-agent", "hallucination", "tool-calling", "memory", "agent-loop", "prompt-injection"]
+        assert beginner_route["hermes"] == ["first-run", "setup", "model", "tools", "prompting"] and beginner_route["conceptCount"] == 64 and beginner_route["hermesCount"] == 25
+        assert beginner_route["active"] != "audience-route-guide" and beginner_route["pressed"] == ["true", "false"] and not beginner_route["guidePressed"]
         certificate_initial = await cdp.evaluate("({disabled:document.querySelector('[data-testid=certificate-print]').disabled,status:document.querySelector('#certificate-status').textContent,requirements:window.__COURSE_TEST__.getCertificateRequirements()})")
         checks["certificate_initial_gate"] = certificate_initial
         assert certificate_initial["disabled"] and len(certificate_initial["requirements"]) == 8 and any(not item["done"] for item in certificate_initial["requirements"])
@@ -124,9 +130,16 @@ async def main_async(args):
         if initial["audience"] == "beginner":
             assert beginner_views == ["白话解释", "生活类比"]
 
-        audience = await cdp.evaluate("document.querySelector('[data-testid=audience-engineer]').click(); ({audience:document.documentElement.dataset.audience,state:window.__COURSE_TEST__.getState().audience,views:[...document.querySelectorAll('#concept-list article:first-child details[data-concept-view][open]')].map(x=>x.dataset.conceptView)})")
+        await cdp.evaluate("document.querySelector('[data-testid=audience-engineer]').click()")
+        await asyncio.sleep(0.03)
+        audience = await cdp.evaluate("({audience:document.documentElement.dataset.audience,state:window.__COURSE_TEST__.getState().audience,views:[...document.querySelectorAll('#concept-list article:first-child details[data-concept-view][open]')].map(x=>x.dataset.conceptView),summary:Boolean(document.querySelector('[data-testid=audience-route-summary][data-audience=engineer]')),title:document.querySelector('[data-testid=audience-route-summary] h3')?.textContent||'',steps:document.querySelectorAll('[data-testid=audience-route-summary] li').length,concepts:[...document.querySelectorAll('#concept-list article')].slice(0,8).map(x=>x.dataset.conceptId),recommended:document.querySelectorAll('#concept-list [data-recommended=true]').length,toast:document.querySelector('#reward-toast').dataset.state,active:document.activeElement.dataset.testid||document.activeElement.id,pressed:[...document.querySelectorAll('.route-card[data-testid^=audience-]')].map(x=>x.getAttribute('aria-pressed')),guidePressed:document.querySelector('[data-testid=audience-route-summary]').hasAttribute('aria-pressed'),hermes:[...document.querySelectorAll('#hermes-modules [data-module-id]')].slice(0,5).map(x=>x.dataset.moduleId)})")
         checks["audience_switch"] = audience
         assert audience["audience"] == "engineer" and audience["state"] == "engineer" and audience["views"] == ["专业定义", "IT 技术类比"]
+        assert audience["summary"] and audience["steps"] == 4 and audience["recommended"] == 13 and audience["toast"] != "visible"
+        assert audience["concepts"] == ["api", "tool-calling", "workflow", "ai-agent", "harness", "agent-loop", "context-engineering", "mcp"]
+        assert audience["hermes"] == ["doctor-status", "tools", "mcp", "profiles", "browser"] and audience["active"] == "audience-route-summary"
+        assert audience["pressed"] == ["false", "true"] and not audience["guidePressed"]
+        assert audience["title"] != beginner_route["title"] and audience["concepts"] != beginner_route["concepts"] and audience["hermes"] != beginner_route["hermes"]
 
         theme = await cdp.evaluate("document.querySelector('[data-testid=theme-toggle]').click(); ({theme:document.documentElement.dataset.theme,state:window.__COURSE_TEST__.getState().theme})")
         checks["theme_switch"] = theme
